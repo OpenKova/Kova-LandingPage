@@ -13,15 +13,15 @@ type QuickStartState = {
 };
 
 const WINDOWS_COMMANDS = {
-  stable: 'powershell -c "irm https://openclaw.ai/install.ps1 | iex"',
-  beta: 'powershell -c "& ([scriptblock]::Create((irm https://openclaw.ai/install.ps1))) -Tag beta"',
-  git: 'powershell -c "& ([scriptblock]::Create((irm https://openclaw.ai/install.ps1))) -InstallMethod git"',
+  stable: 'powershell -c "irm https://kova-agent.ai/install.ps1 | iex"',
+  beta: 'powershell -c "& ([scriptblock]::Create((irm https://kova-agent.ai/install.ps1))) -Tag beta"',
+  git: 'powershell -c "& ([scriptblock]::Create((irm https://kova-agent.ai/install.ps1))) -InstallMethod git"',
 } as const;
 
 const UNIX_COMMANDS = {
-  stable: 'curl -fsSL https://openclaw.ai/install.sh | bash',
-  beta: 'curl -fsSL https://openclaw.ai/install.sh | bash -s -- --beta',
-  git: 'curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git',
+  stable: 'curl -fsSL https://kova-agent.ai/install.sh | bash',
+  beta: 'curl -fsSL https://kova-agent.ai/install.sh | bash -s -- --beta',
+  git: 'curl -fsSL https://kova-agent.ai/install.sh | bash -s -- --install-method git',
 } as const;
 
 const COMMENTS = {
@@ -30,8 +30,8 @@ const COMMENTS = {
     beta: '# Living on the edge. Bugs are features you found first. 🦞',
   },
   quickInstall: {
-    stable: '# Install OpenClaw',
-    beta: '# Install OpenClaw (beta) — Fresh from the lab 🧪',
+    stable: '# Install Kova Agent',
+    beta: '# Install Kova Agent (beta) — Fresh from the lab 🧪',
   },
   quickOnboard: {
     stable: '# Meet your lobster',
@@ -82,8 +82,8 @@ const onelinerCommand = (state: QuickStartState) =>
 const installCommand = (state: QuickStartState) => {
   const version = state.beta ? '@beta' : '';
   return state.packageManager === 'npm'
-    ? `npm i -g openclaw${version}`
-    : `pnpm add -g openclaw${version}`;
+    ? `npm i -g kova${version}`
+    : `pnpm add -g kova${version}`;
 };
 
 const hackableInstallerCommand = (state: QuickStartState) =>
@@ -236,11 +236,11 @@ export function initQuickStart(root: HTMLElement): () => void {
   const copyCommands: Record<string, () => string> = {
     oneliner: () => onelinerCommand(state),
     install: () => installCommand(state),
-    onboard: () => 'openclaw onboard',
+    onboard: () => 'kova onboard',
     'hackable-installer': () => hackableInstallerCommand(state),
-    clone: () => 'git clone https://github.com/openclaw/openclaw.git',
-    build: () => 'cd openclaw && corepack enable && pnpm install',
-    'hackable-onboard': () => 'pnpm openclaw onboard',
+    clone: () => 'git clone https://github.com/OpenKova/kova-agent.git',
+    build: () => 'cd kova-agent && corepack enable && pnpm install',
+    'hackable-onboard': () => 'pnpm kova onboard',
   };
 
   root.querySelectorAll<HTMLButtonElement>('.copy-line-btn').forEach((button) => {

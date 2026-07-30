@@ -45,13 +45,13 @@ describe('static public assets', () => {
     expect(blogSources.every((source) => !source.includes('descriptionHtml:'))).toBe(true);
   });
 
-  test('uses the canonical OpenClaw Carapace contract', () => {
+  test('uses the canonical Kova Carapace contract', () => {
     const layout = readText('src/layouts/Layout.astro');
     const orderedImports = [
-      "import '@openclaw/carapace/tokens.css'",
-      "import '@openclaw/carapace/themes.css'",
-      "import '@openclaw/carapace/typography.css'",
-      "import '@openclaw/carapace/components.css'",
+      "import '@kova/carapace/tokens.css'",
+      "import '@kova/carapace/themes.css'",
+      "import '@kova/carapace/typography.css'",
+      "import '@kova/carapace/components.css'",
     ];
     const importOffsets = orderedImports.map((entry) => layout.indexOf(entry));
 
@@ -114,32 +114,32 @@ describe('static public assets', () => {
 
     expect(config.redirects).toContainEqual({
       source: '/docs',
-      has: [{ type: 'header', key: 'host', value: 'openclaw.ai' }],
-      destination: 'https://docs.openclaw.ai/',
+      has: [{ type: 'header', key: 'host', value: 'kova-agent.ai' }],
+      destination: 'https://docs.kova-agent.ai/',
       statusCode: 308,
     });
     expect(config.redirects).toContainEqual({
       source: '/docs/:path*',
-      has: [{ type: 'header', key: 'host', value: 'openclaw.ai' }],
-      destination: 'https://docs.openclaw.ai/:path*',
+      has: [{ type: 'header', key: 'host', value: 'kova-agent.ai' }],
+      destination: 'https://docs.kova-agent.ai/:path*',
       statusCode: 308,
     });
     expect(config.redirects).toContainEqual({
       source: '/docs/',
-      has: [{ type: 'header', key: 'host', value: 'openclaw.ai' }],
-      destination: 'https://docs.openclaw.ai/',
+      has: [{ type: 'header', key: 'host', value: 'kova-agent.ai' }],
+      destination: 'https://docs.kova-agent.ai/',
       statusCode: 308,
     });
     expect(config.redirects).toContainEqual({
       source: '/docs/:path*/',
-      has: [{ type: 'header', key: 'host', value: 'openclaw.ai' }],
-      destination: 'https://docs.openclaw.ai/:path*/',
+      has: [{ type: 'header', key: 'host', value: 'kova-agent.ai' }],
+      destination: 'https://docs.kova-agent.ai/:path*/',
       statusCode: 308,
     });
   });
 
   test('keeps legacy root logo aliases byte-for-byte with the canonical PNG logo', () => {
-    const canonicalLogo = readBytes('public/openclaw-logo-text-dark.png');
+    const canonicalLogo = readBytes('public/kova-logo-text-dark.png');
     const pngSignature = Buffer.from([0x89, 0x50, 0x4e, 0x47]);
 
     expect(canonicalLogo.subarray(0, pngSignature.length).equals(pngSignature)).toBe(true);
@@ -316,7 +316,7 @@ describe('static public assets', () => {
     const integrationsPage = readText('src/pages/integrations.astro');
 
     expect(integrationsPage).not.toContain('hero-kicker');
-    expect(integrationsPage).not.toContain('The OpenClaw ecosystem');
+    expect(integrationsPage).not.toContain('The Kova Agent ecosystem');
     expect(integrationsPage).toContain('<p class="section-kicker">Works with everything</p>');
     expect(integrationsPage).toContain('<h1 class="hero-title">Integrations</h1>');
     expect(integrationsPage).toMatch(/\.hero \{[\s\S]*?text-align: left;/);

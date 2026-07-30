@@ -1,76 +1,54 @@
-# openclaw.ai
+# kova-agent.ai
 
-Landing page for [OpenClaw](https://github.com/openclaw/openclaw) — your personal AI assistant.
+Landing page for [Kova Agent](https://github.com/OpenKova/kova-agent) — your personal AI assistant.
 
-**Live**: [openclaw.ai](https://openclaw.ai)
+**Live**: [kova-agent.ai](https://kova-agent.ai)
 
-## Pages
+## Tech stack
 
-- `/` — Main landing page with Quick Start, features, and testimonials
-- `/integrations` — Visual grid of all supported chat providers, AI models, platforms, and tools
-- `/shoutouts` — Community testimonials and mentions
+- **Framework**: [Astro](https://astro.build) (static site)
+- **Design system**: [Carapace](https://github.com/OpenKova/carapace) (`@kova/carapace` via GitHub)
+- **Assets**: Static images, inline SVG icons, and simple-icons
+- **Hosting**: [Vercel](https://vercel.com)
+- **Package manager**: `pnpm`
+- **Testing**: `bun test`
 
-## Tech Stack
+## Project status
 
-- [Astro](https://astro.build/) — Static site generator
-- [Vercel](https://vercel.com/) — Hosting
-- Custom CSS — No framework, just vibes
+Any branch may be force-pushed; this project has no stable API contract.
 
 ## Development
 
-```bash
-bun install
-bun run dev
+```sh
+pnpm install
+pnpm dev
 ```
 
-## Contributing
-
-Read [VISION.md](./VISION.md) for product direction and [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a PR.
+Open `http://localhost:4321` in your browser. Edits are reflected in real time.
 
 ## Build
 
-```bash
-bun run build
-bun run preview
+```sh
+pnpm build
 ```
 
-## Deploy
+Built output lands in `dist/`.
 
-Automatically deployed to Vercel on push to `main`.
+## Preview the production build
 
-## Install Scripts
+```sh
+pnpm preview
+```
 
-The landing page hosts installer scripts:
+## Install Kova Agent
 
-- **macOS/Linux**: `curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash`
-- **macOS/Linux (CLI only, no onboarding)**: `curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install-cli.sh | bash`
-- **Windows**: `powershell -c "irm https://openclaw.ai/install.ps1 | iex"`
+- **macOS/Linux**: `curl -fsSL --proto '=https' --tlsv1.2 https://kova-agent.ai/install.sh | bash`
+- **macOS/Linux (CLI only, no onboarding)**: `curl -fsSL --proto '=https' --tlsv1.2 https://kova-agent.ai/install-cli.sh | bash`
 
-Installer UI controls (macOS/Linux `install.sh`):
-- Gum UI is auto-detected; interactive terminals get richer status output, non-interactive shells fall back to plain output automatically.
-- Windows `install.ps1` keeps `irm ... | iex` failures in the current PowerShell session while preserving non-zero exits for direct script-file automation.
+## Test
 
-These scripts:
-1. Install Homebrew (macOS) or detect package managers (Windows)
-2. Install Node.js 22+ if needed
-3. Install openclaw globally via npm, or from a pnpm-backed git checkout with `--install-method git`
-4. Run `openclaw doctor --non-interactive` for migrations (upgrades only)
-5. Prompt to run `openclaw onboard` (new installs)
+```sh
+bun test
+```
 
-Switching after install:
-- npm package to git checkout: `openclaw update --channel dev`
-- git checkout to npm package: `openclaw update --channel stable`
-- installer-forced switch: rerun the installer with `--install-method git` or `--install-method npm`
-
-Source checkouts use the OpenClaw pnpm workspace. Keep hackable/dev-channel copy
-pointing at `pnpm install`; root `npm install` is for packaged installs, not
-source trees.
-
-Troubleshooting:
-- macOS first-run Homebrew bootstrap needs an Administrator account. If install fails with a sudo/admin error, use an admin account (or add the current user to the `admin` group) and rerun the installer.
-
-## Related
-
-- [OpenClaw](https://github.com/openclaw/openclaw) — Main repository
-- [Docs](https://docs.openclaw.ai) — Documentation
-- [Discord](https://discord.gg/openclaw) — Community
+Tests verify static asset integrity, redirect configuration, and mark-up structure.

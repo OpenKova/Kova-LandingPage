@@ -47,12 +47,12 @@ function assertJsonLdIsParseable(html, context) {
   }
 }
 
-assertCopiedByteForByte('public/openclaw-logo-text-dark.png', 'dist/openclaw-logo-text-dark.png');
+assertCopiedByteForByte('public/kova-logo-text-dark.png', 'dist/kova-logo-text-dark.png');
 assertCopiedByteForByte('public/logo.png', 'dist/logo.png');
 assertCopiedByteForByte('public/granola.png', 'dist/granola.png');
 
 assert.ok(
-  readBytes('dist/granola.png').equals(readBytes('dist/openclaw-logo-text-dark.png')),
+  readBytes('dist/granola.png').equals(readBytes('dist/kova-logo-text-dark.png')),
   'dist/granola.png must remain the root compatibility alias for the canonical logo',
 );
 

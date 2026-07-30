@@ -82,10 +82,10 @@
         {
           "type": "header",
           "key": "host",
-          "value": "openclaw.ai"
+          "value": "kova-agent.ai"
         }
       ],
-      "destination": "https://docs.openclaw.ai/",
+      "destination": "https://docs.kova-agent.ai/",
       "statusCode": 308
     },
     {
@@ -94,10 +94,10 @@
         {
           "type": "header",
           "key": "host",
-          "value": "openclaw.ai"
+          "value": "kova-agent.ai"
         }
       ],
-      "destination": "https://docs.openclaw.ai/",
+      "destination": "https://docs.kova-agent.ai/",
       "statusCode": 308
     },
     {
@@ -106,10 +106,10 @@
         {
           "type": "header",
           "key": "host",
-          "value": "openclaw.ai"
+          "value": "kova-agent.ai"
         }
       ],
-      "destination": "https://docs.openclaw.ai/:path*",
+      "destination": "https://docs.kova-agent.ai/:path*",
       "statusCode": 308
     },
     {
@@ -118,10 +118,10 @@
         {
           "type": "header",
           "key": "host",
-          "value": "openclaw.ai"
+          "value": "kova-agent.ai"
         }
       ],
-      "destination": "https://docs.openclaw.ai/:path*/",
+      "destination": "https://docs.kova-agent.ai/:path*/",
       "statusCode": 308
     },
     {
@@ -150,7 +150,7 @@
         {
           "type": "header",
           "key": "host",
-          "value": "openclaw.ai"
+          "value": "kova-agent.ai"
         }
       ],
       "destination": "https://discord.gg/clawd",
@@ -162,7 +162,7 @@
         {
           "type": "header",
           "key": "host",
-          "value": "openclaw.ai"
+          "value": "kova-agent.ai"
         }
       ],
       "destination": "https://discord.gg/clawd",
@@ -184,10 +184,10 @@
         {
           "type": "header",
           "key": "host",
-          "value": "blog.openclaw.ai"
+          "value": "blog.kova-agent.ai"
         }
       ],
-      "destination": "https://openclaw.ai/blog/:path*",
+      "destination": "https://kova-agent.ai/blog/:path*",
       "statusCode": 308
     },
     {
@@ -196,10 +196,10 @@
         {
           "type": "header",
           "key": "host",
-          "value": "blog.openclaw.ai"
+          "value": "blog.kova-agent.ai"
         }
       ],
-      "destination": "https://openclaw.ai/blog/:path*/",
+      "destination": "https://kova-agent.ai/blog/:path*/",
       "statusCode": 308
     },
     {
@@ -208,10 +208,10 @@
         {
           "type": "header",
           "key": "host",
-          "value": "trust.openclaw.ai"
+          "value": "trust.kova-agent.ai"
         }
       ],
-      "destination": "https://openclaw.ai/blog#security",
+      "destination": "https://kova-agent.ai/blog#security",
       "statusCode": 308
     },
     {
@@ -220,10 +220,10 @@
         {
           "type": "header",
           "key": "host",
-          "value": "trust.openclaw.ai"
+          "value": "trust.kova-agent.ai"
         }
       ],
-      "destination": "https://openclaw.ai/blog#security",
+      "destination": "https://kova-agent.ai/blog#security",
       "statusCode": 308
     },
     {
@@ -245,7 +245,7 @@
           "value": "clawd.bot"
         }
       ],
-      "destination": "https://openclaw.ai/:path*",
+      "destination": "https://kova-agent.ai/:path*",
       "statusCode": 308
     },
     {
@@ -257,7 +257,7 @@
           "value": "clawd.bot"
         }
       ],
-      "destination": "https://openclaw.ai/:path*/",
+      "destination": "https://kova-agent.ai/:path*/",
       "statusCode": 308
     },
     {
@@ -269,7 +269,7 @@
           "value": "www.clawd.bot"
         }
       ],
-      "destination": "https://openclaw.ai/:path*",
+      "destination": "https://kova-agent.ai/:path*",
       "statusCode": 308
     },
     {
@@ -281,7 +281,7 @@
           "value": "www.clawd.bot"
         }
       ],
-      "destination": "https://openclaw.ai/:path*/",
+      "destination": "https://kova-agent.ai/:path*/",
       "statusCode": 308
     }
   ]

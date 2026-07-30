@@ -7,7 +7,7 @@ const linkGroups = [
     links: [
       { id: 'showcase', label: 'Showcase', href: '/showcase' },
       { id: 'integrations', label: 'Integrations', href: '/integrations' },
-      { id: 'docs', label: 'Docs', href: 'https://docs.openclaw.ai', external: true },
+      { id: 'docs', label: 'Docs', href: 'https://docs.kova-agent.ai', external: true },
     ],
   },
   {
@@ -20,15 +20,15 @@ const linkGroups = [
   {
     title: 'Project',
     links: [
-      { id: 'foundation', label: 'Foundation', href: 'https://openclaw.org', external: true },
-      { id: 'github', label: 'GitHub', href: 'https://github.com/openclaw/openclaw', external: true },
+      { id: 'foundation', label: 'Foundation', href: 'https://kova-agent.org', external: true },
+      { id: 'github', label: 'GitHub', href: 'https://github.com/OpenKova/kova-agent', external: true },
     ],
   },
 ];
 
 const socialLinks = [
-  { label: 'X', href: 'https://x.com/openclaw', glyph: '𝕏' },
-  { label: 'GitHub', href: 'https://github.com/openclaw/openclaw', path: siGithub.path },
+  { label: 'X', href: 'https://x.com/kovalabs', glyph: '𝕏' },
+  { label: 'GitHub', href: 'https://github.com/OpenKova/kova-agent', path: siGithub.path },
   { label: 'Discord', href: 'https://discord.com/invite/clawd', path: siDiscord.path },
 ];
 
@@ -47,14 +47,14 @@ const visibleGroups = linkGroups.map((group) => ({
 
 <footer class:list={['footer', `footer--${spacing}`]}>
   <div class="footer-top">
-    <section class="footer-brand" aria-label="OpenClaw">
-      <a href="/" class="footer-logo">OpenClaw</a>
+    <section class="footer-brand" aria-label="Kova Agent">
+      <a href="/" class="footer-logo">Kova Agent</a>
       {credit === 'simple' ? (
-        <p class="footer-credit">Built by <a href="https://molty.me" target="_blank" rel="noopener">Molty 🦞</a>.</p>
+        <p class="footer-credit">Built by <a href="https://github.com/OpenKova" target="_blank" rel="noopener" class="credit-strong">Kova Agent</a>.</p>
       ) : (
-        <p class="footer-credit">Built by <a href="https://molty.me" target="_blank" rel="noopener" class="credit-strong">Molty 🦞</a>, a space lobster AI with a soul, by <a href="https://steipete.me" target="_blank" rel="noopener">Peter Steinberger</a> & <a href="https://github.com/openclaw/openclaw#community" target="_blank" rel="noopener">community</a>.</p>
+        <p class="footer-credit">Built by <a href="https://github.com/OpenKova" target="_blank" rel="noopener" class="credit-strong">Kova Agent</a>, an open-source personal AI assistant, by <a href="https://steipete.me" target="_blank" rel="noopener">Peter Steinberger</a> & <a href="https://github.com/OpenKova/kova-agent#community" target="_blank" rel="noopener">community</a>.</p>
       )}
-      <p class="foundation-note">An <a href="https://openclaw.org" target="_blank" rel="noopener">OpenClaw Foundation</a> project.</p>
+      <p class="foundation-note">A <a href="https://kova-agent.org" target="_blank" rel="noopener">Kova Foundation</a> project.</p>
       <nav class="footer-socials" aria-label="Social links">
         {socialLinks.map((link) => (
           <a href={link.href} target="_blank" rel="noopener" aria-label={link.label}>
@@ -90,9 +90,9 @@ const visibleGroups = linkGroups.map((group) => ({
     <p>{showDisclaimer ? 'Independent project, not affiliated with Anthropic.' : 'Open-source assistant infrastructure.'}</p>
     <p class="footer-year">© 2026</p>
     <p class="footer-foundation-meta">
-      <a href="https://openclaw.org" target="_blank" rel="noopener" class="foundation-name">
+      <a href="https://kova-agent.org" target="_blank" rel="noopener" class="foundation-name">
         <img src="https://pbs.twimg.com/profile_images/2017100664984186880/orbYx-3U_400x400.jpg" alt="" loading="lazy" />
-        <span>OpenClaw Foundation</span>
+        <span>Kova Foundation</span>
       </a>
     </p>
   </div>

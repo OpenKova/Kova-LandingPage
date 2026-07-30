@@ -23,7 +23,7 @@ const items: NavItem[] = [
   { href: '/', label: 'Product' },
   { href: '/integrations', label: 'Integrations' },
   {
-    href: 'https://docs.openclaw.ai/',
+    href: 'https://docs.kova-agent.ai/',
     label: 'Docs',
     external: true,
     icon: { kind: 'component', component: FileText },
@@ -35,7 +35,7 @@ const items: NavItem[] = [
     icon: { kind: 'simple', path: siDiscord.path },
   },
   {
-    href: 'https://github.com/openclaw/openclaw',
+    href: 'https://github.com/OpenKova/kova-agent',
     label: 'GitHub',
     external: true,
     icon: { kind: 'simple', path: siGithub.path },
@@ -51,9 +51,9 @@ function isActive(item: NavItem) {
 ---
 
 <header class="site-topbar">
-  <a href="/" class="site-brand" aria-label="OpenClaw home">
+  <a href="/" class="site-brand" aria-label="Kova Agent home">
     <img src="/favicon.svg" alt="" />
-    <span>OpenClaw</span>
+    <span>Kova Agent</span>
   </a>
   <nav class="site-nav site-nav-desktop" aria-label="Main">
     {items.map((item) => (

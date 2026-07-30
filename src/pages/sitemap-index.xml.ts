@@ -1,15 +1,10 @@
-import { getPublishedBlogPosts } from '../lib/blog';
 import { absoluteUrl, xmlEscape } from '../lib/seo';
 
 export async function GET() {
-  const posts = await getPublishedBlogPosts();
-  const lastmod = posts[0]?.data.date.toISOString();
-
-  const sitemaps = ['/sitemap.xml', '/news-sitemap.xml'].map((pathname) =>
+  const sitemaps = ['/sitemap.xml'].map((pathname) =>
     [
       '  <sitemap>',
       `    <loc>${xmlEscape(absoluteUrl(pathname))}</loc>`,
-      lastmod ? `    <lastmod>${lastmod}</lastmod>` : null,
       '  </sitemap>',
     ].filter(Boolean).join('\n')
   );

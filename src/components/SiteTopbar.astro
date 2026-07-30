@@ -1,18 +1,11 @@
 ---
-import { FileText, Megaphone } from '@lucide/astro';
+import { FileText } from '@lucide/astro';
 import { siDiscord, siGithub } from 'simple-icons';
 
-type SimpleIcon = {
+type NavIcon = {
   kind: 'simple';
   path: string;
 };
-
-type ComponentIcon = {
-  kind: 'component';
-  component: typeof FileText;
-};
-
-type NavIcon = SimpleIcon | ComponentIcon;
 
 interface NavItem {
   href: string;
@@ -22,14 +15,13 @@ interface NavItem {
 }
 
 interface Props {
-  active?: 'home' | 'blog' | 'docs' | 'integrations';
+  active?: 'home' | 'docs' | 'integrations';
 }
 
 const { active = 'home' } = Astro.props;
 const items: NavItem[] = [
   { href: '/', label: 'Product' },
   { href: '/integrations', label: 'Integrations' },
-  { href: '/blog', label: 'Blog', icon: { kind: 'component', component: Megaphone } },
   {
     href: 'https://docs.openclaw.ai/',
     label: 'Docs',
@@ -52,7 +44,6 @@ const items: NavItem[] = [
 
 function isActive(item: NavItem) {
   if (active === 'home') return item.href === '/';
-  if (active === 'blog') return item.href === '/blog';
   if (active === 'docs') return item.label === 'Docs';
   if (active === 'integrations') return item.href === '/integrations';
   return false;

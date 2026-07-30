@@ -1,4 +1,4 @@
-const origin = "https://openclaw.ai";
+const origin = "https://kova-agent.ai";
 
 const pages = [
   ["Home", "/"],
@@ -11,21 +11,21 @@ const pages = [
 
 export function GET() {
   const lines = [
-    "# OpenClaw",
+    "# Kova Agent",
     "",
-    "OpenClaw is a personal AI assistant for messaging, browser, desktop, and automation workflows.",
+    "Kova Agent is a personal AI assistant for messaging, browser, desktop, and automation workflows.",
     "",
     "Canonical pages:",
     ...pages.map(([title, path]) => `- ${title}: ${origin}${path}`),
     "",
     "Docs:",
-    "- OpenClaw documentation: https://docs.openclaw.ai/llms.txt",
-    "- OpenClaw markdown index: https://documentation.openclaw.ai/llms.txt",
+    "- Kova Agent documentation: https://docs.kova-agent.ai/llms.txt",
+    "- Kova Agent markdown index: https://documentation.kova-agent.ai/llms.txt",
     "",
-    "Source: https://github.com/openclaw/openclaw.ai",
+    "Source: https://github.com/OpenKova/kova-agent.landing",
     "",
     "Guidance for agents:",
-    "- Use docs.openclaw.ai or documentation.openclaw.ai for product documentation.",
+    "- Use docs.kova-agent.ai or documentation.kova-agent.ai for product documentation.",
     "- Use this file as a site index, not a full-site corpus.",
     "",
   ];

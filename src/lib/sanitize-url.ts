@@ -13,7 +13,7 @@ function normalizeForProtocolCheck(url: string): string {
 
 export function sanitizeUrl(url: string): string {
   try {
-    const parsed = new URL(normalizeForProtocolCheck(url), 'https://openclaw.ai');
+    const parsed = new URL(normalizeForProtocolCheck(url), 'https://kova-agent.ai');
     return allowedProtocols.has(parsed.protocol) ? url : '#';
   } catch {
     return '#';

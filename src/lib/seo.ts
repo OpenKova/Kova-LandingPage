@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://openclaw.ai';
+export const SITE_URL = 'https://kova-agent.ai';
 
 export function absoluteUrl(pathname: string): string {
   return new URL(pathname, SITE_URL).href;

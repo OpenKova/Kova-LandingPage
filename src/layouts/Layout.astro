@@ -1,10 +1,10 @@
 ---
 import Analytics from '@vercel/analytics/astro';
 import { serializeJsonLd } from '../lib/serialize-json-ld';
-import '@openclaw/carapace/tokens.css';
-import '@openclaw/carapace/themes.css';
-import '@openclaw/carapace/typography.css';
-import '@openclaw/carapace/components.css';
+import '@kova/carapace/tokens.css';
+import '@kova/carapace/themes.css';
+import '@kova/carapace/typography.css';
+import '@kova/carapace/components.css';
 
 interface Props {
   title: string;
@@ -20,8 +20,8 @@ interface Props {
 
 const {
   title,
-  description = "OpenClaw — the open-source AI assistant that runs on your machine and works from the chat apps you already use.",
-  canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "https://openclaw.ai").href,
+  description = "Kova Agent — the open-source AI assistant that runs on your machine and works from the chat apps you already use.",
+  canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "https://kova-agent.ai").href,
   ogImage = "/og-image.png",
   ogImageWidth = 1200,
   ogImageHeight = 630,
@@ -30,7 +30,7 @@ const {
   structuredData,
 } = Astro.props;
 
-const siteUrl = Astro.site ?? "https://openclaw.ai";
+const siteUrl = Astro.site ?? "https://kova-agent.ai";
 const resolvedOgImage = new URL(ogImage, siteUrl).href;
 const structuredDataItems = structuredData ? Array.isArray(structuredData) ? structuredData : [structuredData] : [];
 ---
@@ -46,7 +46,7 @@ const structuredDataItems = structuredData ? Array.isArray(structuredData) ? str
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="alternate" type="application/rss+xml" title="OpenClaw Blog" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Kova Agent Blog" href="/rss.xml" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -61,7 +61,7 @@ const structuredDataItems = structuredData ? Array.isArray(structuredData) ? str
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@openclaw" />
+    <meta name="twitter:site" content="@kovalabs" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={resolvedOgImage} />
@@ -92,7 +92,7 @@ const structuredDataItems = structuredData ? Array.isArray(structuredData) ? str
 
     <style is:global>
       :root {
-        /* Site-specific effects build on the shared OpenClaw palette. */
+        /* Site-specific effects build on the shared Kova palette. */
         --newsletter-gradient: rgba(25, 25, 28, 0.85);
         --press-featured-gradient: rgba(245, 101, 74, 0.05);
         --shadow-coral-soft: rgba(178, 58, 40, 0.26);
@@ -261,7 +261,7 @@ const structuredDataItems = structuredData ? Array.isArray(structuredData) ? str
   </head>
   <body class="oc-app-surface">
     <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">
-      <!-- Sun-and-moon morph, ported from the OpenClaw Foundation site -->
+      <!-- Sun-and-moon morph, ported from the Kova Foundation site -->
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <mask id="tt-moon">
           <rect width="24" height="24" fill="#fff" />

@@ -1,0 +1,87 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  title: string;
+  link?: {
+    href: string;
+    text: string;
+  };
+}
+
+const { title, link } = Astro.props;
+const isExternalLink = link?.href.startsWith('http');
+---
+
+<div class="section-header oc-section-header">
+  <h2 class="section-title oc-eyebrow">{title}</h2>
+  {link && (
+    <a href={link.href} class="section-link">
+      {link.text} <span class="sr-only">related content</span>
+      <Icon icon={isExternalLink ? 'lucide:arrow-up-right' : 'lucide:arrow-right'} color="currentColor" size={10} class="section-link-icon" />
+    </a>
+  )}
+</div>
+
+<style>
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--oc-space-4);
+    margin-bottom: 20px;
+  }
+
+  /* Foundation-style section label: mono, uppercase, accent */
+  .section-title {
+    font-family: var(--oc-font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--oc-accent-primary);
+    margin-bottom: 0;
+  }
+
+  .section-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--oc-font-mono);
+    font-size: 0.76rem;
+    color: var(--oc-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    flex-shrink: 0;
+    transition: color var(--oc-duration-ui) ease;
+  }
+
+  .section-link:hover {
+    color: var(--oc-text-primary);
+  }
+
+  .section-link-icon {
+    width: 0.68rem;
+    height: 0.68rem;
+    flex: 0 0 auto;
+    stroke-width: 2.25;
+    transform: translateY(0.5px);
+    transition: transform 0.15s ease;
+  }
+
+  .section-link:hover .section-link-icon {
+    transform: translate(2px, 0.5px);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>

@@ -1,0 +1,314 @@
+---
+import Analytics from '@vercel/analytics/astro';
+import { serializeJsonLd } from '../lib/serialize-json-ld';
+import '@openclaw/carapace/tokens.css';
+import '@openclaw/carapace/themes.css';
+import '@openclaw/carapace/typography.css';
+import '@openclaw/carapace/components.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogImageType?: string;
+  ogType?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description = "OpenClaw — the open-source AI assistant that runs on your machine and works from the chat apps you already use.",
+  canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "https://openclaw.ai").href,
+  ogImage = "/og-image.png",
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
+  ogImageType = "image/png",
+  ogType = "website",
+  structuredData,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? "https://openclaw.ai";
+const resolvedOgImage = new URL(ogImage, siteUrl).href;
+const structuredDataItems = structuredData ? Array.isArray(structuredData) ? structuredData : [structuredData] : [];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" type="application/rss+xml" title="OpenClaw Blog" href="/rss.xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:secure_url" content={resolvedOgImage} />
+    <meta property="og:image:type" content={ogImageType} />
+    <meta property="og:image:width" content={ogImageWidth} />
+    <meta property="og:image:height" content={ogImageHeight} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@openclaw" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={resolvedOgImage} />
+    <meta name="twitter:image:secure_url" content={resolvedOgImage} />
+    <meta name="twitter:image:width" content={ogImageWidth} />
+    <meta name="twitter:image:height" content={ogImageHeight} />
+
+    <!-- Fonts: Switzer + Sentient italic accent from Fontshare with font-display swap for performance -->
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=sentient@400i&display=swap" rel="stylesheet">
+
+    <title>{title}</title>
+
+    {structuredDataItems.map((item) => (
+      <script type="application/ld+json" set:html={serializeJsonLd(item)} />
+    ))}
+
+    <script is:inline>
+      (() => {
+        const key = 'oc-theme';
+        const saved = localStorage.getItem(key);
+        const theme = saved === 'light' || saved === 'dark' ? saved : 'dark';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+
+    <style is:global>
+      :root {
+        /* Site-specific effects build on the shared OpenClaw palette. */
+        --newsletter-gradient: rgba(25, 25, 28, 0.85);
+        --press-featured-gradient: rgba(245, 101, 74, 0.05);
+        --shadow-coral-soft: rgba(178, 58, 40, 0.26);
+        --shadow-coral-mid: rgba(178, 58, 40, 0.38);
+        --shadow-coral-strong: rgba(178, 58, 40, 0.5);
+        --shadow-cyan-soft: rgba(47, 164, 141, 0.24);
+        --shadow-github-soft: rgba(237, 237, 237, 0.12);
+        --github-hover-color: var(--oc-text-primary);
+        --hero-title-start: var(--oc-text-primary);
+        --hero-title-end: var(--oc-text-primary);
+        --logo-gradient-start: var(--oc-accent-primary);
+        --logo-gradient-end: var(--oc-accent-primary-deep);
+        --logo-glow: color-mix(in srgb, var(--oc-accent-primary) 35%, transparent);
+        --logo-glow-hover: color-mix(in srgb, var(--oc-accent-secondary) 50%, transparent);
+
+        /* Fonts */
+        --oc-font-display: 'Switzer', system-ui, sans-serif;
+        --oc-font-body: 'Switzer', system-ui, sans-serif;
+        --oc-font-serif: 'Sentient', Georgia, serif;
+        --oc-font-mono: ui-monospace, 'SF Mono', 'Fira Code', 'JetBrains Mono', Menlo, monospace;
+      }
+
+      html[data-theme='light'] {
+        --newsletter-gradient: rgba(255, 255, 255, 0.9);
+        --press-featured-gradient: rgba(216, 74, 49, 0.06);
+        --shadow-coral-soft: rgba(156, 50, 34, 0.15);
+        --shadow-coral-mid: rgba(156, 50, 34, 0.22);
+        --shadow-coral-strong: rgba(156, 50, 34, 0.3);
+        --shadow-cyan-soft: rgba(15, 99, 85, 0.16);
+        --shadow-github-soft: rgba(23, 23, 26, 0.18);
+        --github-hover-color: var(--oc-text-primary);
+        --hero-title-start: var(--oc-text-primary);
+        --hero-title-end: var(--oc-text-primary);
+        --logo-glow: color-mix(in srgb, var(--oc-accent-primary) 22%, transparent);
+        --logo-glow-hover: color-mix(in srgb, var(--oc-accent-secondary) 30%, transparent);
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--oc-font-body);
+        background: var(--oc-bg-page);
+        color: var(--oc-text-primary);
+        line-height: 1.6;
+        min-height: 100vh;
+        transition: background-color 0.25s ease, color 0.25s ease;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Retired space-era layers still present in page markup */
+      .stars,
+      .nebula {
+        display: none !important;
+      }
+
+      /* Film grain: adds texture so large dark surfaces don't band or look flat */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        pointer-events: none;
+        opacity: 0.05;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+      }
+
+      html[data-theme='light'] body::after {
+        opacity: 0.03;
+      }
+
+      h1, h2, h3 {
+        text-wrap: balance;
+      }
+
+      ::selection {
+        background: var(--oc-accent-primary);
+        color: var(--oc-bg-page);
+      }
+
+      .theme-toggle {
+        position: fixed;
+        top: 14px;
+        right: 28px;
+        z-index: 999;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--oc-space-1);
+        border: none;
+        background: none;
+        color: var(--oc-text-muted);
+        cursor: pointer;
+        transition: color 150ms ease;
+      }
+
+      .theme-toggle:hover {
+        color: var(--oc-text-primary);
+      }
+
+      .theme-toggle:focus-visible {
+        outline: 2px solid var(--oc-accent-primary);
+        outline-offset: 2px;
+      }
+
+      .theme-toggle svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      /* Sun-and-moon morph: in dark mode the core circle is large with a
+         mask bite (moon); in light mode it shrinks and the rays rotate in. */
+      .theme-toggle .tt-core {
+        fill: currentColor;
+        r: 9px;
+        transition: r 260ms ease;
+      }
+
+      .theme-toggle .tt-hole {
+        cx: 17px;
+        cy: 7px;
+        transition: cx 300ms ease, cy 300ms ease;
+      }
+
+      .theme-toggle .tt-rays {
+        opacity: 0;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-width: 1.6;
+        transform: rotate(-40deg) scale(0.6);
+        transform-origin: center;
+        transition: opacity 220ms ease, transform 320ms ease;
+      }
+
+      html[data-theme='light'] .theme-toggle .tt-core {
+        r: 4.4px;
+      }
+
+      html[data-theme='light'] .theme-toggle .tt-hole {
+        cx: 32px;
+        cy: -8px;
+      }
+
+      html[data-theme='light'] .theme-toggle .tt-rays {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+      }
+
+      @media (max-width: 720px) {
+        .theme-toggle {
+          top: 16px;
+          right: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body class="oc-app-surface">
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">
+      <!-- Sun-and-moon morph, ported from the OpenClaw Foundation site -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <mask id="tt-moon">
+          <rect width="24" height="24" fill="#fff" />
+          <circle class="tt-hole" cx="17" cy="7" r="7" fill="#000" />
+        </mask>
+        <circle class="tt-core" cx="12" cy="12" mask="url(#tt-moon)" />
+        <g class="tt-rays">
+          <line x1="12" y1="1.6" x2="12" y2="3.8" />
+          <line x1="12" y1="20.2" x2="12" y2="22.4" />
+          <line x1="1.6" y1="12" x2="3.8" y2="12" />
+          <line x1="20.2" y1="12" x2="22.4" y2="12" />
+          <line x1="4.6" y1="4.6" x2="6.2" y2="6.2" />
+          <line x1="17.8" y1="17.8" x2="19.4" y2="19.4" />
+          <line x1="4.6" y1="19.4" x2="6.2" y2="17.8" />
+          <line x1="17.8" y1="6.2" x2="19.4" y2="4.6" />
+        </g>
+      </svg>
+    </button>
+    <slot />
+    <Analytics />
+
+    <script is:inline>
+      (() => {
+        const key = 'oc-theme';
+        const root = document.documentElement;
+        const toggle = document.querySelector('[data-theme-toggle]');
+        if (!toggle) return;
+
+        const applyTheme = (theme, persist = true) => {
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+          const isDark = theme === 'dark';
+          toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+          if (persist) {
+            localStorage.setItem(key, theme);
+          }
+        };
+
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+          applyTheme(next);
+        });
+
+        const current = root.dataset.theme === 'light' ? 'light' : 'dark';
+        applyTheme(current, false);
+      })();
+    </script>
+  </body>
+</html>

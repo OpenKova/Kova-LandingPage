@@ -1,0 +1,44 @@
+name: Install Matrix
+
+concurrency:
+  group: install-matrix-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Matrix mode
+        required: true
+        default: dry-run
+        type: choice
+        options:
+          - dry-run
+          - full
+
+jobs:
+  linux-install-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - ubuntu:22.04
+          - ubuntu:24.04
+          - debian:12
+          - fedora:40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Run matrix (push/pr)
+        if: github.event_name != 'workflow_dispatch'
+        run: bash scripts/test-install-matrix.sh --mode dry-run --image "${{ matrix.image }}"
+
+      - name: Run matrix (manual)
+        if: github.event_name == 'workflow_dispatch'
+        run: bash scripts/test-install-matrix.sh --mode "${{ inputs.mode }}" --image "${{ matrix.image }}"

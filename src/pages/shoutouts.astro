@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import testimonials from '../data/testimonials.json';
+import extraTestimonials from '../data/testimonials-extra.json';
+import { getCachedXAvatarSrc, getInitialsAvatarSrc } from '../lib/avatars';
+import { sanitizeUrl } from '../lib/sanitize-url';
+
+// Combine all testimonials - strongest first, then extras (no randomization)
+const allTestimonials = [...testimonials, ...extraTestimonials];
+---
+
+<Layout title="Shoutouts — OpenClaw">
+  <div class="stars"></div>
+  <div class="nebula"></div>
+
+  <main class="container">
+    <header class="header">
+      <a href="/" class="back-link">← Back to home</a>
+      <h1 class="title">
+        <span class="claw-accent">◆</span> Shoutouts
+      </h1>
+      <p class="subtitle">What the community is saying about OpenClaw</p>
+    </header>
+
+    <div class="shoutouts-grid">
+      {allTestimonials.map((t) => (
+        <a href={sanitizeUrl(t.url)} target="_blank" rel="noopener" class="shoutout-card oc-card">
+          <img
+            src={t.avatar || getCachedXAvatarSrc(t.author, t.author, 96)}
+            alt={t.author}
+            class="shoutout-avatar"
+            loading="lazy"
+            onerror={`this.src='${getInitialsAvatarSrc(t.author, 96)}'`}
+          />
+          <div class="shoutout-content">
+            <p class="shoutout-quote">"{t.quote}"</p>
+            <span class="shoutout-author">@{t.author}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <SiteFooter current="shoutouts" />
+  </main>
+</Layout>
+
+<style>
+  /* Starfield Background */
+  .stars {
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 160px 120px, rgba(255,255,255,0.7), transparent),
+      radial-gradient(2px 2px at 200px 60px, rgba(0,229,204,0.6), transparent),
+      radial-gradient(1px 1px at 250px 150px, rgba(255,255,255,0.5), transparent),
+      radial-gradient(2px 2px at 300px 40px, rgba(255,77,77,0.4), transparent);
+    background-size: 350px 200px;
+    animation: twinkle 8s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes twinkle {
+    0% { opacity: 0.4; }
+    100% { opacity: 0.7; }
+  }
+
+  /* Nebula Gradient */
+  .nebula {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(245, 101, 74, 0.12), transparent 50%),
+      radial-gradient(ellipse 60% 60% at 80% 30%, rgba(79, 200, 174, 0.08), transparent 50%),
+      radial-gradient(ellipse 90% 70% at 50% 90%, rgba(245, 101, 74, 0.06), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px var(--oc-space-5);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: var(--oc-space-7);
+    
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: var(--oc-space-5);
+    color: var(--oc-text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color var(--oc-duration-ui) ease;
+  }
+
+  .back-link:hover {
+    color: var(--oc-accent-primary);
+  }
+
+  .title {
+    font-family: var(--oc-font-display);
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 700;
+    margin-bottom: var(--oc-space-3);
+    color: var(--oc-text-primary);
+  }
+
+  .claw-accent {
+    color: var(--oc-accent-primary);
+    font-size: 0.5em;
+    vertical-align: 0.22em;
+  }
+
+  .subtitle {
+    color: var(--oc-text-secondary);
+    font-size: 1.1rem;
+  }
+
+  .shoutouts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    
+  }
+
+  .shoutout-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px;
+    border-radius: var(--oc-radius-surface);
+    border: 1px solid var(--oc-border-subtle);
+    background: var(--oc-surface-card-strong);
+    backdrop-filter: blur(8px);
+    text-decoration: none;
+    color: var(--oc-text-primary);
+    box-shadow: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .shoutout-card:hover {
+    border-color: var(--oc-accent-primary);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .shoutout-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid var(--oc-border-subtle);
+    background: var(--oc-bg-elevated);
+  }
+
+  .shoutout-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--oc-space-2);
+    min-width: 0;
+  }
+
+  .shoutout-quote {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--oc-text-secondary);
+  }
+
+  .shoutout-author {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--oc-accent-primary);
+  }
+
+
+  @media (max-width: 480px) {
+    .container {
+      padding: var(--oc-space-5) var(--oc-space-4);
+    }
+
+    .shoutouts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .shoutout-card {
+      padding: var(--oc-space-4);
+    }
+
+    .shoutout-avatar {
+      width: 40px;
+      height: 40px;
+    }
+  }
+</style>

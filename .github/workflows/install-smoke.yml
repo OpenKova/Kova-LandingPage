@@ -1,0 +1,174 @@
+name: Install Smoke
+
+concurrency:
+  group: install-smoke-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  install-scripts-cross-platform:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: install.sh dry run
+        if: runner.os != 'Windows'
+        run: bash public/install.sh --dry-run --no-onboard --no-prompt
+
+      - name: install.ps1 dry run
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: .\\public\\install.ps1 -DryRun -NoOnboard -InstallMethod npm
+
+  macos-install-verify:
+    # GitHub-hosted macOS runners are frequently capacity constrained.
+    # Keep this check available for manual verification without blocking
+    # normal push/PR CI on an unstarted job.
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 24
+
+      - name: install.sh dry run
+        run: bash public/install.sh --dry-run --no-onboard --no-prompt
+
+      - name: Install via install.sh
+        env:
+          OPENCLAW_NO_ONBOARD: "1"
+          OPENCLAW_NO_PROMPT: "1"
+        run: bash public/install.sh --no-onboard --no-prompt --version latest
+
+      - name: Verify openclaw
+        run: openclaw --version
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Install ShellCheck
+        run: sudo apt-get update -y && sudo apt-get install -y shellcheck
+
+      - name: ShellCheck
+        run: shellcheck -e SC1091 public/install.sh public/install-cli.sh scripts/test-install-matrix.sh scripts/test-install-ps1-unit.sh scripts/test-install-shell-unit.sh scripts/docker/*/run.sh
+
+  install-sh-unit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Installer syntax
+        run: bash -n public/install.sh public/install-cli.sh
+
+      - name: Installer help
+        run: |
+          bash public/install.sh --help >/tmp/install-help.txt
+          bash public/install-cli.sh --help >/tmp/install-cli-help.txt
+
+      - name: PowerShell installer unit contract
+        run: bash scripts/test-install-ps1-unit.sh
+
+      - name: Shell installer unit contract
+        run: bash scripts/test-install-shell-unit.sh
+
+  install-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout installer
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Build smoke image (root)
+        run: docker build -t clawdbot-install-smoke:ci -f scripts/docker/install-sh-smoke/Dockerfile .
+
+      - name: Run install smoke (root)
+        env:
+          CLAWDBOT_NO_ONBOARD: "1"
+        run: docker run --rm -t -e CLAWDBOT_NO_ONBOARD clawdbot-install-smoke:ci
+
+      - name: Build non-root image
+        run: docker build -t clawdbot-install-nonroot:ci -f scripts/docker/install-sh-nonroot/Dockerfile .
+
+      - name: Run install smoke (non-root + CLI)
+        env:
+          CLAWDBOT_NO_ONBOARD: "1"
+        run: |
+          docker run --rm -t \
+            -e CLAWDBOT_NO_ONBOARD \
+            clawdbot-install-nonroot:ci
+
+  install-sh-git-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout installer
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Build git smoke image (install.sh)
+        run: docker build -t clawdbot-install-git-smoke:ci -f scripts/docker/install-sh-git-smoke/Dockerfile .
+
+      - name: Run git smoke (install.sh)
+        env:
+          CLAWDBOT_NO_ONBOARD: "1"
+          CLAWDBOT_NO_PROMPT: "1"
+        run: docker run --rm -t -e CLAWDBOT_NO_ONBOARD -e CLAWDBOT_NO_PROMPT clawdbot-install-git-smoke:ci
+
+  install-cli-git-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout installer
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Build git smoke image (install-cli.sh)
+        run: docker build -t openclaw-install-cli-git-smoke:ci -f scripts/docker/install-cli-git-smoke/Dockerfile .
+
+      - name: Run git smoke (install-cli.sh)
+        run: docker run --rm -t openclaw-install-cli-git-smoke:ci
+
+  windows-install-verify:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, windows-latest]
+        node: [22, 24]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install via install.ps1
+        shell: pwsh
+        run: .\public\install.ps1 -NoOnboard -InstallMethod npm
+
+      - name: Verify command resolution and shim location
+        shell: pwsh
+        run: |
+          $cmd = Get-Command openclaw.cmd -ErrorAction Stop
+          & $cmd.Source --version
+
+          $prefix = (npm config get prefix 2>$null).Trim()
+          $rootShim = Join-Path $prefix "openclaw.cmd"
+          $binShim = Join-Path (Join-Path $prefix "bin") "openclaw.cmd"
+          if (-not ((Test-Path $rootShim) -or (Test-Path $binShim))) {
+            throw "openclaw.cmd was not found in npm global prefix candidates."
+          }

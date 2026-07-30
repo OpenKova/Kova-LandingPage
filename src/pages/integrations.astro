@@ -1,0 +1,1079 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteTopbar from '../components/SiteTopbar.astro';
+import {
+  automationLinks,
+  capabilities,
+  catalogSnapshot,
+  channels,
+  communityGroups,
+  companionNodes,
+  featuredProviders,
+  gatewayHosts,
+  providerGroups,
+} from '../data/integrations';
+---
+
+<Layout
+  title="Integrations — OpenClaw"
+  description="Connect OpenClaw to chat channels, model providers, tools, automation, companion apps, and community extensions."
+>
+  <SiteTopbar active="integrations" />
+  <div class="stars" aria-hidden="true"></div>
+
+  <main class="page-shell">
+    <header class="hero">
+      <p class="section-kicker">Works with everything</p>
+      <h1 class="hero-title">Integrations</h1>
+      <p class="hero-lede">
+        Connect OpenClaw to the chats, models, tools, and devices you already use.
+      </p>
+      <p class="hero-copy">
+        Bring API keys, sign in with supported subscriptions, route through a gateway,
+        or run models locally. Extend the runtime with official plugins and community skills.
+      </p>
+      <div class="hero-actions">
+        <a href="https://docs.openclaw.ai/" target="_blank" rel="noopener" class="action action-primary oc-action oc-action-primary">
+          Read the docs <span aria-hidden="true">↗</span>
+        </a>
+        <a href="https://clawhub.ai" target="_blank" rel="noopener" class="action action-secondary oc-action oc-action-ghost">
+          Browse ClawHub <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <dl class="catalog-stats" aria-label="Current OpenClaw catalog snapshot">
+      {catalogSnapshot.stats.map((stat) => (
+        <div class="stat">
+          <dt>{stat.label}</dt>
+          <dd data-count-up={stat.value} aria-label={stat.value}>{stat.value}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <section id="channels" class="catalog-section">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Message OpenClaw anywhere</p>
+          <h2>Chat channels</h2>
+          <p>
+            Run several channels at once and route each conversation through the
+            Gateway. Every channel installs in one command or during onboarding.
+          </p>
+        </div>
+        <a href="https://docs.openclaw.ai/channels" target="_blank" rel="noopener">
+          Channel directory ↗
+        </a>
+      </div>
+
+      <div id="channel-catalog" class="catalog-grid channel-grid">
+        {channels.map((item) => (
+          <a
+            href={item.docs}
+            target="_blank"
+            rel="noopener"
+            class="catalog-card"
+            style={`--accent: ${item.color}`}
+          >
+            <span class="card-icon">
+              {item.logo
+                ? <img src={item.logo} alt="" class="brand-logo" width="30" height="30" loading="lazy" decoding="async" />
+                : <Icon icon={item.icon} color={item.color} size={28} />}
+            </span>
+            <h3>{item.name}</h3>
+            <p>{item.desc}</p>
+          </a>
+        ))}
+      </div>
+      <button
+        type="button"
+        class="channel-expander oc-action oc-action-ghost"
+        aria-controls="channel-catalog"
+        aria-expanded="false"
+        data-channel-expander
+        hidden
+      >
+        <span data-channel-expander-label>See all channels</span>
+        <span class="channel-expander-icon" aria-hidden="true">
+          <Icon icon="lucide:chevron-down" color="currentColor" size={16} />
+        </span>
+      </button>
+    </section>
+
+    <section id="models" class="catalog-section models-section">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Cloud, subscription, gateway, or local</p>
+          <h2>Models and media providers</h2>
+          <p>
+            OpenClaw separates model choice, authentication, and execution runtime.
+            Providers can also add search, speech, image, video, music, and media understanding.
+          </p>
+        </div>
+        <a href="https://docs.openclaw.ai/providers" target="_blank" rel="noopener">
+          Provider directory ↗
+        </a>
+      </div>
+
+      <div class="catalog-grid provider-grid">
+        {featuredProviders.map((item) => (
+          <a
+            href={item.docs}
+            target="_blank"
+            rel="noopener"
+            class="catalog-card provider-card"
+            style={`--accent: ${item.color}`}
+          >
+            <span class="card-icon">
+              {item.logo
+                ? <img src={item.logo} alt="" class="brand-logo" width="30" height="30" loading="lazy" decoding="async" />
+                : <Icon icon={item.icon} color={item.color} size={30} />}
+            </span>
+            <h3>{item.name}</h3>
+            <p>{item.desc}</p>
+          </a>
+        ))}
+      </div>
+
+      <div class="group-grid">
+        {providerGroups.map((group) => (
+          <article class="link-group" style={`--accent: ${group.color}`}>
+            <div class="link-group-heading">
+              <Icon icon={group.icon} color={group.color} size={24} />
+              <div>
+                <h3>{group.name}</h3>
+                <p>{group.desc}</p>
+              </div>
+            </div>
+            <ul>
+              {group.links.map((link) => (
+                <li><a href={link.docs} target="_blank" rel="noopener">{link.name}</a></li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="tools" class="catalog-section">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Act, coordinate, and keep working</p>
+          <h2>Built-in tools and automation</h2>
+          <p>
+            Tools are callable actions, skills teach repeatable workflows, and plugins add
+            runtime capabilities such as providers, channels, hooks, and tools.
+          </p>
+        </div>
+        <a href="https://docs.openclaw.ai/tools" target="_blank" rel="noopener">
+          Tools overview ↗
+        </a>
+      </div>
+
+      <div class="catalog-grid capability-grid">
+        {capabilities.map((item) => (
+          <a
+            href={item.docs}
+            target="_blank"
+            rel="noopener"
+            class="catalog-card capability-card"
+            style={`--accent: ${item.color}`}
+          >
+            <span class="card-icon"><Icon icon={item.icon} color={item.color} size={28} /></span>
+            <h3>{item.name}</h3>
+            <p>{item.desc}</p>
+          </a>
+        ))}
+      </div>
+
+      <div class="automation-band">
+        <div class="automation-intro">
+          <span class="automation-mark"><Icon icon="lucide:workflow" color="var(--oc-accent-primary)" size={26} /></span>
+          <div>
+            <p class="section-kicker">Background work</p>
+            <h3>Automation is more than cron</h3>
+            <p>Choose the right mechanism for schedules, monitoring, events, durable flows, and persistent instructions.</p>
+          </div>
+        </div>
+        <ol class="automation-links">
+          {automationLinks.map((link, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <a href={link.docs} target="_blank" rel="noopener">{link.name} ↗</a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section id="platforms" class="catalog-section">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Run here. Reach there.</p>
+          <h2>Gateway hosts and companion nodes</h2>
+          <p>
+            The Gateway runs on desktop and server operating systems. Companion nodes connect
+            mobile and native device capabilities without hosting the Gateway themselves.
+          </p>
+        </div>
+        <a href="https://docs.openclaw.ai/platforms" target="_blank" rel="noopener">
+          Platform guide ↗
+        </a>
+      </div>
+
+      <div class="platform-columns">
+        <div class="platform-column">
+          <div class="platform-heading">
+            <Icon icon="lucide:server-cog" color="var(--oc-accent-primary)" size={24} />
+            <div>
+              <h3>Gateway hosts</h3>
+              <p>Run the agent runtime, channels, automation, and services.</p>
+            </div>
+          </div>
+          <div class="platform-list">
+            {gatewayHosts.map((item) => (
+              <a href={item.docs} target="_blank" rel="noopener" style={`--accent: ${item.color}`}>
+                <span class="card-icon">
+                  {item.logo
+                    ? <img src={item.logo} alt="" class="brand-logo" width="25" height="25" loading="lazy" decoding="async" />
+                    : <Icon icon={item.icon} color={item.color} size={25} />}
+                </span>
+                <span><strong>{item.name}</strong><small>{item.desc}</small></span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="platform-column">
+          <div class="platform-heading">
+            <Icon icon="lucide:monitor-smartphone" color="var(--oc-accent-secondary)" size={24} />
+            <div>
+              <h3>Companion nodes</h3>
+              <p>Expose camera, screen, voice, location, Canvas, and native actions.</p>
+            </div>
+          </div>
+          <div class="platform-list">
+            {companionNodes.map((item) => (
+              <a href={item.docs} target="_blank" rel="noopener" style={`--accent: ${item.color}`}>
+                <span class="card-icon">
+                  {item.logo
+                    ? <img src={item.logo} alt="" class="brand-logo" width="25" height="25" loading="lazy" decoding="async" />
+                    : <Icon icon={item.icon} color={item.color} size={25} />}
+                </span>
+                <span><strong>{item.name}</strong><small>{item.desc}</small></span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community" class="catalog-section community-section">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Extend the runtime</p>
+          <h2>Community skills and plugins</h2>
+          <p>
+            ClawHub is the public registry for reusable skills and installable plugins.
+            Community extensions are labeled separately from capabilities included in OpenClaw.
+          </p>
+        </div>
+        <a href="https://clawhub.ai" target="_blank" rel="noopener">Browse ClawHub ↗</a>
+      </div>
+
+      <div class="group-grid community-grid">
+        {communityGroups.map((group) => (
+          <article class="link-group community-group" style={`--accent: ${group.color}`}>
+            <div class="link-group-heading">
+              <Icon icon={group.icon} color={group.color} size={24} />
+              <div>
+                <h3>{group.name}</h3>
+                <p>{group.desc}</p>
+              </div>
+            </div>
+            <ul>
+              {group.links.map((link) => (
+                <li><a href={link.docs} target="_blank" rel="noopener">{link.name}</a></li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+
+      <div class="community-cta">
+        <div>
+          <p class="section-kicker">Need something else?</p>
+          <h3>Install it, or build it.</h3>
+          <p>Plugins can add tools, channels, providers, hooks, speech, realtime voice, media generation, and packaged skills.</p>
+        </div>
+        <div class="community-actions">
+          <a href="https://clawhub.ai" target="_blank" rel="noopener" class="action action-primary oc-action oc-action-primary">Explore ClawHub ↗</a>
+          <a href="https://docs.openclaw.ai/plugins/building-plugins" target="_blank" rel="noopener" class="action action-secondary oc-action oc-action-ghost">Build a plugin ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <SiteFooter current="integrations" spacing="compact" />
+  </main>
+</Layout>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>('[data-count-up]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const numberFormatter = new Intl.NumberFormat('en-US');
+
+  const animateCounter = (counter: HTMLElement) => {
+    const target = Number.parseInt(counter.dataset.countUp ?? '', 10);
+    if (!Number.isFinite(target)) return;
+
+    const duration = 900;
+    const startedAt = performance.now();
+
+    const updateCounter = (now: number) => {
+      const progress = Math.min((now - startedAt) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      counter.textContent = numberFormatter.format(Math.round(target * easedProgress));
+
+      if (progress < 1) requestAnimationFrame(updateCounter);
+    };
+
+    requestAnimationFrame(updateCounter);
+  };
+
+  if (!prefersReducedMotion) {
+    const counterObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const counter = entry.target as HTMLElement;
+        counterObserver.unobserve(counter);
+        animateCounter(counter);
+      }
+    }, { threshold: 0.6 });
+
+    for (const counter of counters) {
+      counter.textContent = '0';
+      counterObserver.observe(counter);
+    }
+  }
+
+  const channelGrid = document.querySelector<HTMLElement>('#channel-catalog');
+  const channelExpander = document.querySelector<HTMLButtonElement>('[data-channel-expander]');
+  const channelExpanderLabel = channelExpander?.querySelector<HTMLElement>('[data-channel-expander-label]');
+
+  if (channelGrid && channelExpander && channelExpanderLabel) {
+    channelGrid.classList.add('is-collapsed');
+    channelExpander.hidden = false;
+
+    channelExpander.addEventListener('click', () => {
+      const isCollapsed = channelGrid.classList.toggle('is-collapsed');
+      channelExpander.setAttribute('aria-expanded', String(!isCollapsed));
+      channelExpanderLabel.textContent = isCollapsed ? 'See all channels' : 'Show fewer channels';
+    });
+  }
+</script>
+
+<style>
+  .stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.56;
+    background-image:
+      radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.82), transparent),
+      radial-gradient(1px 1px at 74px 110px, rgba(255,255,255,0.48), transparent),
+      radial-gradient(1px 1px at 130px 62px, rgba(0,229,204,0.64), transparent),
+      radial-gradient(1px 1px at 196px 144px, rgba(255,77,77,0.54), transparent);
+    background-size: 230px 180px;
+  }
+
+  .page-shell {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 var(--oc-space-7) var(--oc-space-7);
+    border-left: 1px solid var(--oc-border-subtle);
+    border-right: 1px solid var(--oc-border-subtle);
+  }
+
+  @media (max-width: 720px) {
+    .page-shell {
+      padding: 0 20px 40px;
+      border-left: none;
+      border-right: none;
+    }
+  }
+
+  .hero {
+    max-width: 760px;
+    padding: 56px 0 44px;
+    text-align: left;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .section-heading > a {
+    color: var(--oc-text-muted);
+    font-family: var(--oc-font-mono);
+    font-size: 0.76rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .section-heading > a:hover {
+    color: var(--oc-text-primary);
+  }
+
+  .section-kicker {
+    color: var(--oc-accent-primary);
+    font-family: var(--oc-font-mono);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    margin: var(--oc-space-3) 0 0;
+    font-family: var(--oc-font-display);
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--oc-text-primary);
+  }
+
+  .hero-lede {
+    max-width: 640px;
+    margin: 14px 0 0;
+    color: var(--oc-text-secondary);
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+
+  .hero-copy {
+    max-width: 640px;
+    margin: 10px 0 0;
+    color: var(--oc-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions,
+  .community-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 26px;
+  }
+
+  .action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 22px;
+    border: 1px solid var(--oc-border-subtle);
+    font-family: var(--oc-font-mono);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+
+  .action span {
+    margin-left: var(--oc-space-1);
+  }
+
+  .action:hover {
+    transform: none;
+  }
+
+  .action:active,
+  .channel-expander:active {
+    transform: none;
+  }
+
+  .action-primary {
+    border-color: var(--oc-accent-primary);
+    background: var(--oc-accent-primary);
+    color: var(--oc-text-on-accent);
+  }
+
+  .action-primary:hover {
+    background: color-mix(in srgb, var(--oc-accent-primary) 82%, #fff);
+    border-color: color-mix(in srgb, var(--oc-accent-primary) 82%, #fff);
+  }
+
+  .action-secondary {
+    background: var(--oc-bg-page);
+    color: var(--oc-text-primary);
+  }
+
+  .action-secondary:hover {
+    background: var(--oc-bg-surface);
+    border-color: color-mix(in srgb, var(--oc-text-muted) 55%, transparent);
+  }
+
+  .catalog-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+    border-top: 1px solid var(--oc-border-subtle);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3px;
+    min-height: 92px;
+    padding: var(--oc-space-4) 20px;
+    border-right: 1px solid var(--oc-border-subtle);
+  }
+
+  .stat:last-child {
+    border-right: 0;
+  }
+
+  .stat dt {
+    color: var(--oc-text-muted);
+    font-family: var(--oc-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .stat dd {
+    color: var(--oc-text-primary);
+    font-family: var(--oc-font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .catalog-section {
+    margin: 0;
+    padding: 56px 0;
+    border-top: 1px solid var(--oc-border-subtle);
+    scroll-margin-top: 82px;
+  }
+
+  .section-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 28px;
+    margin-bottom: var(--oc-space-5);
+  }
+
+  .section-heading h2 {
+    margin: 10px 0 var(--oc-space-2);
+    font-family: var(--oc-font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  .section-heading p:not(.section-kicker) {
+    max-width: 720px;
+    color: var(--oc-text-secondary);
+    font-size: 0.92rem;
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--oc-border-subtle);
+    border: 1px solid var(--oc-border-subtle);
+  }
+
+  .channel-grid.is-collapsed > .catalog-card:nth-child(n + 13) {
+    display: none;
+  }
+
+  .channel-expander {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 38px;
+    margin: 18px auto 0;
+    padding: 0 var(--oc-space-3);
+    border: 1px solid var(--oc-border-subtle);
+    border-radius: var(--oc-radius-control);
+    background: var(--oc-bg-page);
+    color: var(--oc-text-secondary);
+    font-family: var(--oc-font-mono);
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease, color 0.18s ease;
+  }
+
+  .channel-expander[hidden] {
+    display: none;
+  }
+
+  .channel-expander:hover,
+  .channel-expander:focus-visible {
+    border-color: var(--oc-border-accent);
+    background: var(--oc-surface-card-strong);
+    color: var(--oc-text-primary);
+  }
+
+  .channel-expander:focus-visible {
+    outline: none;
+    border-color: var(--oc-accent-secondary);
+    box-shadow: 0 0 0 1px var(--oc-accent-secondary);
+  }
+
+  .channel-expander-icon {
+    display: inline-flex;
+    line-height: 0;
+    transition: transform 0.18s ease;
+  }
+
+  .channel-expander[aria-expanded='true'] .channel-expander-icon {
+    transform: rotate(180deg);
+  }
+
+  .catalog-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 148px;
+    padding: 20px;
+    overflow: hidden;
+    background: var(--oc-bg-page);
+    color: var(--oc-text-primary);
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+
+  .catalog-card:hover,
+  .catalog-card:focus-visible {
+    background: var(--oc-bg-surface);
+  }
+
+  .card-icon {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    margin-bottom: 15px;
+  }
+
+  .brand-logo {
+    display: block;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .catalog-card h3 {
+    margin: 0 0 5px;
+    font-family: var(--oc-font-display);
+    font-size: 1rem;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .catalog-card p {
+    margin: 0;
+    color: var(--oc-text-muted);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+
+  .link-group li {
+    display: inline-flex;
+  }
+
+  .provider-card {
+    min-height: 164px;
+  }
+
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--oc-border-subtle);
+    border: 1px solid var(--oc-border-subtle);
+    margin-top: var(--oc-space-3);
+  }
+
+  .link-group {
+    min-width: 0;
+    padding: 22px 20px;
+    background: var(--oc-bg-page);
+  }
+
+  .link-group-heading {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: var(--oc-space-3);
+    margin-bottom: var(--oc-space-4);
+  }
+
+  .link-group h3,
+  .platform-heading h3,
+  .automation-intro h3,
+  .community-cta h3 {
+    margin: 0 0 3px;
+    font-family: var(--oc-font-display);
+    font-size: 1.05rem;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .link-group p,
+  .platform-heading p,
+  .automation-intro p:not(.section-kicker),
+  .community-cta p:not(.section-kicker) {
+    color: var(--oc-text-muted);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .link-group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .link-group a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 9px;
+    border: 1px solid var(--oc-border-subtle);
+    color: var(--oc-text-secondary);
+    font-family: var(--oc-font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .link-group a:hover,
+  .link-group a:focus-visible {
+    background: var(--oc-bg-surface);
+    color: var(--oc-text-primary);
+  }
+
+  .capability-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .capability-card {
+    min-height: 154px;
+  }
+
+  .automation-band {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 34px;
+    margin-top: var(--oc-space-3);
+    padding: 26px 0;
+    border-top: 1px solid var(--oc-border-subtle);
+    border-bottom: 1px solid var(--oc-border-subtle);
+  }
+
+  .automation-intro {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    align-content: start;
+    gap: var(--oc-space-3);
+  }
+
+  .automation-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--oc-border-accent);
+    border-radius: var(--oc-radius-inset);
+    background: var(--oc-surface-accent-soft);
+  }
+
+  .automation-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--oc-border-subtle);
+  }
+
+  .automation-links li {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: center;
+    min-height: 42px;
+    padding-left: var(--oc-space-3);
+    border-bottom: 1px solid var(--oc-border-subtle);
+  }
+
+  .automation-links li:nth-child(odd) {
+    border-right: 1px solid var(--oc-border-subtle);
+  }
+
+  .automation-links span {
+    color: var(--oc-text-muted);
+    font-family: var(--oc-font-mono);
+    font-size: 0.64rem;
+  }
+
+  .automation-links a {
+    color: var(--oc-text-secondary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .automation-links a:hover {
+    color: var(--oc-text-primary);
+  }
+
+  .platform-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--oc-space-5);
+  }
+
+  .platform-column {
+    min-width: 0;
+  }
+
+  .platform-heading {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: var(--oc-space-3);
+    min-height: 72px;
+    padding-bottom: 14px;
+  }
+
+  .platform-list {
+    border-top: 1px solid var(--oc-border-subtle);
+  }
+
+  .platform-list a {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 10px;
+    min-height: 84px;
+    padding: 14px 6px;
+    border-bottom: 1px solid var(--oc-border-subtle);
+    color: var(--oc-text-primary);
+    text-decoration: none;
+    transition: background 0.18s ease, padding 0.18s ease;
+  }
+
+  .platform-list a:hover,
+  .platform-list a:focus-visible {
+    padding-right: 10px;
+    padding-left: 10px;
+    background: var(--oc-surface-card);
+  }
+
+  .platform-list .card-icon {
+    margin: 0;
+  }
+
+  .platform-list .brand-logo {
+    width: 25px;
+    height: 25px;
+  }
+
+  .platform-list span:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .platform-list strong {
+    font-family: var(--oc-font-display);
+    font-size: 0.92rem;
+    letter-spacing: 0;
+  }
+
+  .platform-list small {
+    color: var(--oc-text-muted);
+    font-size: 0.73rem;
+    line-height: 1.4;
+  }
+
+  .community-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .community-cta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--oc-space-5);
+    margin-top: var(--oc-space-3);
+    padding: 28px 0;
+    border-top: 1px solid var(--oc-border-subtle);
+    border-bottom: 1px solid var(--oc-border-subtle);
+  }
+
+  .community-cta > div:first-child {
+    max-width: 680px;
+  }
+
+  .community-actions {
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--oc-accent-secondary);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 980px) {
+    .catalog-grid,
+    .capability-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .channel-grid.is-collapsed > .catalog-card:nth-child(n + 10) {
+      display: none;
+    }
+
+    .community-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .page-shell {
+      width: min(100% - 24px, 680px);
+      padding-top: 18px;
+    }
+
+    .hero {
+      padding-top: 18px;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+    }
+
+    .hero-lede {
+      font-size: 1.05rem;
+    }
+
+    .catalog-stats,
+    .catalog-grid,
+    .capability-grid,
+    .platform-columns,
+    .group-grid,
+    .automation-band,
+    .community-cta {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .channel-grid.is-collapsed > .catalog-card:nth-child(n + 7) {
+      display: none;
+    }
+
+    .catalog-stats .stat:nth-child(2) {
+      border-right: 0;
+    }
+
+    .catalog-stats .stat:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--oc-border-subtle);
+    }
+
+    .section-heading {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .automation-band,
+    .platform-columns,
+    .community-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .community-actions {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .page-shell {
+      width: min(100% - 20px, 480px);
+    }
+
+    .hero-title {
+      font-size: 2.55rem;
+    }
+
+    .hero-actions,
+    .community-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .catalog-grid,
+    .capability-grid,
+    .group-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .channel-grid.is-collapsed > .catalog-card:nth-child(n + 4) {
+      display: none;
+    }
+
+    .catalog-card {
+      min-height: 138px;
+    }
+
+    .catalog-section {
+      margin-bottom: 62px;
+    }
+
+    .section-heading h2 {
+      font-size: 1.65rem;
+    }
+
+    .automation-links {
+      grid-template-columns: 1fr;
+    }
+
+    .automation-links li:nth-child(odd) {
+      border-right: 0;
+    }
+
+    .platform-heading {
+      min-height: auto;
+    }
+  }
+</style>

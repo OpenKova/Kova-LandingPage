@@ -1,0 +1,565 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import showcaseData from '../data/showcase.json';
+import featuredBuilds from '../data/community-builds.json';
+import { getCachedXAvatarSrc, getInitialsAvatarSrc } from '../lib/avatars';
+import { sanitizeUrl } from '../lib/sanitize-url';
+
+const featuredIds = new Set(featuredBuilds.map((item) => item.id));
+const sortedShowcase = showcaseData.filter((item) => !featuredIds.has(item.id));
+
+const categoryLabels: Record<string, string> = {
+  'power-user': '🚀 Power User',
+  'automation': '⚡ Automation',
+  'productivity': '📋 Productivity',
+  'integration': '🔗 Integration',
+  'developer': '💻 Developer',
+  'personal': '👤 Personal',
+  'family': '👨‍👩‍👧 Family',
+  'smart-home': '🏠 Smart Home',
+};
+---
+
+<Layout title="Showcase — What People Are Building with OpenClaw">
+  <div class="stars"></div>
+  <div class="nebula"></div>
+
+  <main class="container">
+    <header class="header">
+      <a href="/" class="back-link">← Back to home</a>
+      <h1 class="title">
+        <span class="claw-accent">◆</span> What People Are Building
+      </h1>
+      <p class="subtitle">OpenClaw builds verified in public: X threads, shipped workflows, and automations people run daily.</p>
+    </header>
+
+    <section class="featured-section">
+      <div class="featured-header">
+        <h2 class="featured-title">Featured Builds</h2>
+        <p class="featured-copy">
+          Personal ops, coding, family workflows, and “I cannot believe this is running from chat.”
+        </p>
+      </div>
+      <div class="featured-grid">
+        {featuredBuilds.map((build) => (
+          <a href={sanitizeUrl(build.href)} target="_blank" rel="noopener" class="featured-card oc-card">
+            <div class="featured-topline">
+              <span class="featured-source">{build.source}</span>
+              <span class="featured-likes">❤️ {build.likes}</span>
+            </div>
+            <h3 class="featured-card-title">{build.title}</h3>
+            <p class="featured-summary">{build.summary}</p>
+            <div class="featured-meta">
+              <span class="featured-author">@{build.author}</span>
+              <div class="featured-tags">
+                {build.tags.map((tag: string) => (
+                  <span class="featured-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <div class="grid-header">
+      <h2 class="grid-title">More From the Community</h2>
+      <p class="grid-copy">More OpenClaw projects, experiments, and production workflows.</p>
+    </div>
+
+    <div class="showcase-grid">
+      {sortedShowcase.map((item) => (
+        <a href={`https://x.com/${item.author}/status/${item.id}`} target="_blank" rel="noopener" class="showcase-card oc-card">
+          <div class="card-header">
+            <img
+              src={getCachedXAvatarSrc(item.author, item.author, 96)}
+              alt={item.author}
+              class="avatar"
+              loading="lazy"
+              onerror={`this.src='${getInitialsAvatarSrc(item.author, 96)}'`}
+            />
+            <div class="author-info">
+              <span class="author-name">@{item.author}</span>
+              <span class="category-tag">{categoryLabels[item.category] || item.category}</span>
+            </div>
+            <span class="likes">❤️ {item.likes}</span>
+          </div>
+          <p class="quote">{item.quote}</p>
+          {item.images && item.images.length > 0 && (
+            <div class="images">
+              {item.images.map((img: string) => (
+                <img src={img} alt="Screenshot" class="tweet-image" loading="lazy" />
+              ))}
+            </div>
+          )}
+          <span class="view-link">View on X →</span>
+        </a>
+      ))}
+    </div>
+
+    <section class="cta-section">
+      <h2 class="cta-title">Built something cool?</h2>
+      <p class="cta-desc">Share your OpenClaw creation with the community</p>
+      <div class="cta-buttons">
+        <a href="https://twitter.com/intent/tweet?text=Check%20out%20what%20I%20built%20with%20%40openclaw%21" target="_blank" rel="noopener" class="cta-btn cta-primary oc-action">Share on X</a>
+        <a href="https://clawhub.ai" target="_blank" rel="noopener" class="cta-btn cta-hub oc-action">Browse Skills</a>
+        <a href="https://discord.com/invite/clawd" target="_blank" rel="noopener" class="cta-btn cta-secondary oc-action">Join Discord</a>
+      </div>
+    </section>
+
+    <p class="more-examples">
+      Looking for more? Check out <a href="https://docs.openclaw.ai/start/showcase" target="_blank" rel="noopener">even more examples in our docs</a> →
+    </p>
+
+    <SiteFooter current="showcase" credit="simple" />
+  </main>
+</Layout>
+
+<style>
+  .stars {
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
+      radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 160px 120px, rgba(255,255,255,0.7), transparent),
+      radial-gradient(2px 2px at 200px 60px, rgba(0,229,204,0.6), transparent),
+      radial-gradient(1px 1px at 250px 150px, rgba(255,255,255,0.5), transparent),
+      radial-gradient(2px 2px at 300px 40px, rgba(255,77,77,0.4), transparent);
+    background-size: 350px 200px;
+    animation: twinkle 8s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes twinkle {
+    0% { opacity: 0.4; }
+    100% { opacity: 0.7; }
+  }
+
+  .nebula {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(245, 101, 74, 0.12), transparent 50%),
+      radial-gradient(ellipse 60% 60% at 80% 30%, rgba(79, 200, 174, 0.08), transparent 50%),
+      radial-gradient(ellipse 90% 70% at 50% 90%, rgba(245, 101, 74, 0.06), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px var(--oc-space-5);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: var(--oc-space-7);
+    
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: var(--oc-space-5);
+    color: var(--oc-text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color var(--oc-duration-ui) ease;
+  }
+
+  .back-link:hover {
+    color: var(--oc-accent-primary);
+  }
+
+  .title {
+    font-family: var(--oc-font-display);
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 700;
+    margin-bottom: var(--oc-space-3);
+    color: var(--oc-text-primary);
+  }
+
+  .claw-accent {
+    color: var(--oc-accent-primary);
+    font-size: 0.5em;
+    vertical-align: 0.22em;
+  }
+
+  .subtitle {
+    color: var(--oc-text-secondary);
+    font-size: 1.1rem;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .featured-section {
+    margin-bottom: var(--oc-space-7);
+  }
+
+  .featured-header {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .featured-title,
+  .grid-title {
+    font-family: var(--oc-font-display);
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--oc-text-primary);
+  }
+
+  .featured-copy,
+  .grid-copy {
+    color: var(--oc-text-secondary);
+    max-width: 760px;
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .featured-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 22px;
+    border-radius: var(--oc-radius-surface);
+    border: 1px solid var(--oc-border-subtle);
+    background:
+      linear-gradient(135deg, rgba(245, 101, 74, 0.06), transparent 40%),
+      var(--oc-surface-card-strong);
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+    color: var(--oc-text-primary);
+    box-shadow: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .featured-card:hover {
+    transform: none;
+    border-color: var(--oc-accent-primary);
+    box-shadow: none;
+  }
+
+  .featured-topline,
+  .featured-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--oc-space-3);
+  }
+
+  .featured-source,
+  .featured-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: var(--oc-radius-control);
+    border: 1px solid var(--oc-border-subtle);
+    background: var(--oc-surface-overlay);
+    color: var(--oc-text-muted);
+    font-size: 0.76rem;
+  }
+
+  .featured-source {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .featured-likes {
+    font-size: 0.84rem;
+    color: var(--oc-text-muted);
+  }
+
+  .featured-card-title {
+    font-family: var(--oc-font-display);
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+
+  .featured-summary {
+    color: var(--oc-text-secondary);
+    line-height: 1.65;
+  }
+
+  .featured-author {
+    color: var(--oc-accent-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--oc-space-2);
+  }
+
+  .grid-header {
+    display: grid;
+    gap: var(--oc-space-2);
+    margin-bottom: 20px;
+  }
+
+  .showcase-grid {
+    column-width: 340px;
+    column-gap: 20px;
+    margin-bottom: 56px;
+  }
+
+  .showcase-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--oc-space-4);
+    padding: var(--oc-space-5);
+    border-radius: var(--oc-radius-surface);
+    border: 1px solid var(--oc-border-subtle);
+    background: var(--oc-surface-card-strong);
+    backdrop-filter: blur(8px);
+    text-decoration: none;
+    color: var(--oc-text-primary);
+    box-shadow: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid-column;
+    margin-bottom: 20px;
+  }
+
+  .showcase-card:hover {
+    border-color: var(--oc-accent-primary);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--oc-space-3);
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid var(--oc-border-subtle);
+    background: var(--oc-bg-elevated);
+    object-fit: cover;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .author-name {
+    font-weight: 600;
+    color: var(--oc-accent-primary);
+    font-size: 0.95rem;
+  }
+
+  .category-tag {
+    font-size: var(--oc-font-size-xs);
+    color: var(--oc-text-muted);
+  }
+
+  .likes {
+    font-size: 0.85rem;
+    color: var(--oc-text-muted);
+  }
+
+  .quote {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--oc-text-secondary);
+    white-space: pre-line;
+  }
+
+  .images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--oc-space-2);
+    margin-top: var(--oc-space-3);
+  }
+
+  .tweet-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--oc-radius-inset);
+    border: 1px solid var(--oc-border-subtle);
+    object-fit: cover;
+    max-height: 200px;
+  }
+
+  .view-link {
+    font-size: 0.85rem;
+    color: var(--oc-text-muted);
+    padding-top: var(--oc-space-3);
+    border-top: 1px solid var(--oc-border-subtle);
+    transition: color var(--oc-duration-ui) ease;
+  }
+
+  .showcase-card:hover .view-link {
+    color: var(--oc-accent-primary);
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: var(--oc-space-7) var(--oc-space-5);
+    border-radius: var(--oc-radius-surface);
+    border: 1px solid var(--oc-border-subtle);
+    background: var(--oc-surface-card-strong);
+    backdrop-filter: blur(12px);
+    margin-bottom: var(--oc-space-7);
+  }
+
+  .cta-title {
+    font-family: var(--oc-font-display);
+    font-size: var(--oc-font-size-2xl);
+    font-weight: 600;
+    color: var(--oc-text-primary);
+    margin-bottom: var(--oc-space-2);
+  }
+
+  .cta-desc {
+    color: var(--oc-text-secondary);
+    margin-bottom: var(--oc-space-5);
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: var(--oc-space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--oc-space-2);
+    padding: var(--oc-space-3) var(--oc-space-5);
+    border-radius: var(--oc-radius-control);
+    font-family: var(--oc-font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .cta-primary {
+    background: linear-gradient(135deg, var(--oc-accent-primary) 0%, var(--oc-accent-primary-deep) 100%);
+    color: white;
+    box-shadow: none;
+  }
+
+  .cta-primary:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .cta-hub {
+    background: var(--oc-surface-secondary-soft);
+    border: 1px solid var(--oc-accent-secondary);
+    color: var(--oc-accent-secondary);
+  }
+
+  .cta-hub:hover {
+    background: rgba(79, 200, 174, 0.25);
+    transform: none;
+  }
+
+  .cta-secondary {
+    background: rgba(88, 101, 242, 0.15);
+    border: 1px solid #5865F2;
+    color: #5865F2;
+  }
+
+  .cta-secondary:hover {
+    background: rgba(88, 101, 242, 0.25);
+    transform: none;
+  }
+
+  .cta-btn:active {
+    transform: none;
+  }
+
+  .more-examples {
+    text-align: center;
+    color: var(--oc-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: var(--oc-space-6);
+  }
+
+  .more-examples a {
+    color: var(--oc-accent-secondary);
+    text-decoration: none;
+  }
+
+  .more-examples a:hover {
+    text-decoration: underline;
+  }
+
+
+  @media (max-width: 640px) {
+    .container {
+      padding: var(--oc-space-5) var(--oc-space-4);
+    }
+
+    .featured-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-meta {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .featured-tags {
+      justify-content: flex-start;
+    }
+
+    .showcase-grid {
+      column-width: auto;
+      column-count: 1;
+    }
+
+    .showcase-card {
+      padding: 20px;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-btn {
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+    }
+  }
+</style>

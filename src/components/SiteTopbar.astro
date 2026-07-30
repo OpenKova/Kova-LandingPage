@@ -22,13 +22,12 @@ interface NavItem {
 }
 
 interface Props {
-  active?: 'home' | 'blog' | 'docs' | 'ecosystem' | 'integrations';
+  active?: 'home' | 'blog' | 'docs' | 'integrations';
 }
 
 const { active = 'home' } = Astro.props;
 const items: NavItem[] = [
   { href: '/', label: 'Product' },
-  { href: '/ecosystem', label: 'Ecosystem' },
   { href: '/integrations', label: 'Integrations' },
   { href: '/blog', label: 'Blog', icon: { kind: 'component', component: Megaphone } },
   {
@@ -55,7 +54,6 @@ function isActive(item: NavItem) {
   if (active === 'home') return item.href === '/';
   if (active === 'blog') return item.href === '/blog';
   if (active === 'docs') return item.label === 'Docs';
-  if (active === 'ecosystem') return item.href === '/ecosystem';
   if (active === 'integrations') return item.href === '/integrations';
   return false;
 }

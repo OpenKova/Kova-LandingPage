@@ -5,7 +5,6 @@ import { blogPostPath, sitemapUrl } from '../lib/seo';
 const staticPaths = [
   '/',
   '/blog',
-  '/ecosystem',
   '/integrations',
   '/press',
   '/publications/clawhub-security-signals.pdf',

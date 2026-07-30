@@ -65,7 +65,7 @@ function formatBlogDate(date: Date): string {
 const asciiAurora = renderAsciiAurora();
 ---
 
-<Layout title="OpenClaw — Personal AI Assistant">
+<Layout title="Kova Agent — Personal AI Assistant">
   <SiteTopbar active="home" />
 
   <main class="container">
@@ -106,7 +106,7 @@ const asciiAurora = renderAsciiAurora();
 
         <div class="hero-actions">
           <a href="#quickstart" class="hero-cta oc-action oc-action-primary">Get started</a>
-          <a href="https://docs.openclaw.ai/" target="_blank" rel="noopener" class="hero-cta hero-cta-ghost oc-action oc-action-ghost">Read the docs</a>
+          <a href="https://docs.kova-agent.ai/" target="_blank" rel="noopener" class="hero-cta hero-cta-ghost oc-action oc-action-ghost">Read the docs</a>
         </div>
       </div>
     </header>
@@ -148,7 +148,7 @@ const asciiAurora = renderAsciiAurora();
           <div class="code-line comment" id="oneliner-comment"># Works everywhere. On macOS, first run may need an Administrator for Homebrew.</div>
           <div class="code-line cmd">
             <span class="code-prompt">$</span>
-            <span class="os-cmd">curl -fsSL https://openclaw.ai/install.sh | bash</span>
+            <span class="os-cmd">curl -fsSL https://kova-agent.ai/install.sh | bash</span>
             <button type="button" class="copy-line-btn" data-cmd="oneliner" title="Copy">
               <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
@@ -156,10 +156,10 @@ const asciiAurora = renderAsciiAurora();
           </div>
         </div>
         <div id="code-quick" class="code-content" hidden>
-          <div class="code-line comment" id="quick-comment-install"># Install OpenClaw</div>
+          <div class="code-line comment" id="quick-comment-install"># Install Kova Agent</div>
           <div class="code-line cmd">
             <span class="code-prompt">$</span>
-            <span class="pm-install">npm i -g openclaw</span>
+            <span class="pm-install">npm i -g kova</span>
             <button type="button" class="copy-line-btn" data-cmd="install" title="Copy">
               <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
@@ -168,7 +168,7 @@ const asciiAurora = renderAsciiAurora();
           <div class="code-line comment" id="quick-comment-onboard"># Meet your lobster</div>
           <div class="code-line cmd">
             <span class="code-prompt">$</span>
-            <span>openclaw onboard</span>
+            <span>kova onboard</span>
             <button type="button" class="copy-line-btn" data-cmd="onboard" title="Copy">
               <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
@@ -180,7 +180,7 @@ const asciiAurora = renderAsciiAurora();
             <div class="code-line comment"># For those who read source code for fun</div>
             <div class="code-line cmd">
               <span class="code-prompt">$</span>
-              <span class="os-cmd-hackable">curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git</span>
+              <span class="os-cmd-hackable">curl -fsSL https://kova-agent.ai/install.sh | bash -s -- --install-method git</span>
               <button type="button" class="copy-line-btn" data-cmd="hackable-installer" title="Copy">
                 <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
@@ -191,7 +191,7 @@ const asciiAurora = renderAsciiAurora();
             <div class="code-line comment"># Source checkouts are pnpm workspaces</div>
             <div class="code-line cmd">
               <span class="code-prompt">$</span>
-              <span>git clone https://github.com/openclaw/openclaw.git</span>
+              <span>git clone https://github.com/OpenKova/kova-agent.git</span>
               <button type="button" class="copy-line-btn" data-cmd="clone" title="Copy">
                 <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
@@ -199,7 +199,7 @@ const asciiAurora = renderAsciiAurora();
             </div>
             <div class="code-line cmd">
               <span class="code-prompt">$</span>
-              <span>cd openclaw && corepack enable && pnpm install</span>
+              <span>cd kova-agent && corepack enable && pnpm install</span>
               <button type="button" class="copy-line-btn" data-cmd="build" title="Copy">
                 <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
@@ -208,7 +208,7 @@ const asciiAurora = renderAsciiAurora();
             <div class="code-line comment"># Run from source; bundled plugins use extensions/* deps</div>
             <div class="code-line cmd">
               <span class="code-prompt">$</span>
-              <span>pnpm openclaw onboard</span>
+              <span>pnpm kova onboard</span>
               <button type="button" class="copy-line-btn" data-cmd="hackable-onboard" title="Copy">
                 <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
@@ -230,7 +230,7 @@ const asciiAurora = renderAsciiAurora();
                 <span class="app-download-platform">macOS</span>
                 <span class="app-download-meta">macOS 15+ · Universal Binary</span>
                 <div class="app-download-actions">
-                  <a href="https://github.com/openclaw/openclaw/releases/latest" class="app-download-btn oc-action oc-action-primary" target="_blank" rel="noopener">
+                  <a href="https://github.com/OpenKova/kova-agent/releases/latest" class="app-download-btn oc-action oc-action-primary" target="_blank" rel="noopener">
                     <Icon icon="lucide:download" color="currentColor" size={18} />
                     Download macOS
                   </a>
@@ -238,13 +238,13 @@ const asciiAurora = renderAsciiAurora();
               </div>
               <div class="app-download-card">
                 <span class="app-download-platform">Windows Hub</span>
-                <a class="app-download-meta" href="https://docs.openclaw.ai/platforms/windows" target="_blank" rel="noopener">Windows 10 20H2+ or Windows 11 · Tray, setup, chat, node mode</a>
+                <a class="app-download-meta" href="https://docs.kova-agent.ai/platforms/windows" target="_blank" rel="noopener">Windows 10 20H2+ or Windows 11 · Tray, setup, chat, node mode</a>
                 <div class="app-download-actions windows-download-actions">
-                  <a href="https://github.com/openclaw/openclaw/releases/latest/download/OpenClawCompanion-Setup-x64.exe" class="app-download-btn oc-action oc-action-primary" target="_blank" rel="noopener">
+                  <a href="https://github.com/OpenKova/kova-agent/releases/latest/download/KovaCompanion-Setup-x64.exe" class="app-download-btn oc-action oc-action-primary" target="_blank" rel="noopener">
                     <Icon icon="lucide:download" color="currentColor" size={18} />
                     Download x64
                   </a>
-                  <a href="https://github.com/openclaw/openclaw/releases/latest/download/OpenClawCompanion-Setup-arm64.exe" class="app-download-btn app-download-btn-secondary oc-action" target="_blank" rel="noopener">
+                  <a href="https://github.com/OpenKova/kova-agent/releases/latest/download/KovaCompanion-Setup-arm64.exe" class="app-download-btn app-download-btn-secondary oc-action" target="_blank" rel="noopener">
                     <Icon icon="lucide:download" color="currentColor" size={18} />
                     Download ARM64
                   </a>
@@ -255,7 +255,7 @@ const asciiAurora = renderAsciiAurora();
         </div>
       </div>
       <p class="quickstart-note">
-        Works on macOS, Linux, and Windows. The one-liner installs Node.js and everything else for you. Switch later with <code>openclaw update --channel dev</code> or <code>openclaw update --channel stable</code>.
+        Works on macOS, Linux, and Windows. The one-liner installs Node.js and everything else for you. Switch later with <code>kova update --channel dev</code> or <code>kova update --channel stable</code>.
       </p>
     </section>
 
@@ -367,7 +367,7 @@ const asciiAurora = renderAsciiAurora();
     <section class="features">
       <SectionHeader title="What It Does" />
       <div class="features-grid">
-        <a href="https://docs.openclaw.ai/getting-started" target="_blank" rel="noopener" class="feature-card">
+        <a href="https://docs.kova-agent.ai/getting-started" target="_blank" rel="noopener" class="feature-card">
           <div class="feature-icon"><Icon icon="lucide:home" color="var(--oc-text-muted)" size={28} /></div>
           <h3 class="feature-title">Runs on Your Machine</h3>
           <p class="feature-desc">Mac, Windows, or Linux. Bring hosted, subscription-backed, gateway, or local models. State lives on your machine, not a vendor cloud.</p>
@@ -377,22 +377,22 @@ const asciiAurora = renderAsciiAurora();
           <h3 class="feature-title">Chat Where You Are</h3>
           <p class="feature-desc">Talk to it on WhatsApp, Telegram, Discord, Slack, Signal, iMessage, or any of its 29 channels. Works in DMs and group chats.</p>
         </a>
-        <a href="https://docs.openclaw.ai/session" target="_blank" rel="noopener" class="feature-card">
+        <a href="https://docs.kova-agent.ai/session" target="_blank" rel="noopener" class="feature-card">
           <div class="feature-icon"><Icon icon="lucide:brain" color="var(--oc-text-muted)" size={28} /></div>
           <h3 class="feature-title">Persistent Memory</h3>
           <p class="feature-desc">Remembers your preferences, projects, and people from one conversation to the next.</p>
         </a>
-        <a href="https://docs.openclaw.ai/browser" target="_blank" rel="noopener" class="feature-card">
+        <a href="https://docs.kova-agent.ai/browser" target="_blank" rel="noopener" class="feature-card">
           <div class="feature-icon"><Icon icon="lucide:globe" color="var(--oc-text-muted)" size={28} /></div>
           <h3 class="feature-title">Browser Control</h3>
           <p class="feature-desc">It can browse the web, fill forms, and extract data from any site.</p>
         </a>
-        <a href="https://docs.openclaw.ai/bash" target="_blank" rel="noopener" class="feature-card">
+        <a href="https://docs.kova-agent.ai/bash" target="_blank" rel="noopener" class="feature-card">
           <div class="feature-icon"><Icon icon="lucide:terminal" color="var(--oc-text-muted)" size={28} /></div>
           <h3 class="feature-title">Full System Access</h3>
           <p class="feature-desc">Read and write files, run shell commands, execute scripts. Full access or sandboxed—your choice.</p>
         </a>
-        <a href="https://docs.openclaw.ai/skills" target="_blank" rel="noopener" class="feature-card">
+        <a href="https://docs.kova-agent.ai/skills" target="_blank" rel="noopener" class="feature-card">
           <div class="feature-icon"><Icon icon="lucide:puzzle" color="var(--oc-text-muted)" size={28} /></div>
           <h3 class="feature-title">Skills & Plugins</h3>
           <p class="feature-desc">Extend with community skills or build your own. It can even write its own.</p>
@@ -458,7 +458,7 @@ const asciiAurora = renderAsciiAurora();
       <div class="builds-grid">
         <div class="builds-head-cell">
           <h2><span>What people are building.</span></h2>
-          <p><span>Real OpenClaw workflows shared by the community.</span></p>
+          <p><span>Real Kova Agent workflows shared by the community.</span></p>
           <a href="/showcase" class="builds-head-cta">View showcase</a>
         </div>
         {featuredBuilds.map((build) => (
@@ -483,7 +483,7 @@ const asciiAurora = renderAsciiAurora();
         ))}
         <div class="build-links">
           <a href="https://discord.com/invite/clawd" class="build-link" target="_blank" rel="noopener">Community chatter <Icon icon="lucide:arrow-up-right" color="currentColor" size={10} class="link-arrow-icon" /></a>
-          <a href="https://docs.openclaw.ai/start/showcase" class="build-link" target="_blank" rel="noopener">Docs showcase <Icon icon="lucide:arrow-up-right" color="currentColor" size={10} class="link-arrow-icon" /></a>
+          <a href="https://docs.kova-agent.ai/start/showcase" class="build-link" target="_blank" rel="noopener">Docs showcase <Icon icon="lucide:arrow-up-right" color="currentColor" size={10} class="link-arrow-icon" /></a>
           <a href="/shoutouts" class="build-link">More shoutouts <Icon icon="lucide:arrow-right" color="currentColor" size={10} class="link-arrow-icon" /></a>
         </div>
       </div>
@@ -526,7 +526,7 @@ const asciiAurora = renderAsciiAurora();
           <span class="cta-sub">Join the community</span>
         </a>
 
-        <a href="https://docs.openclaw.ai/getting-started" class="cta cta-docs" target="_blank" rel="noopener">
+        <a href="https://docs.kova-agent.ai/getting-started" class="cta cta-docs" target="_blank" rel="noopener">
           <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
@@ -537,7 +537,7 @@ const asciiAurora = renderAsciiAurora();
           <span class="cta-sub">Learn the ropes</span>
         </a>
 
-        <a href="https://github.com/openclaw/openclaw" class="cta cta-github" target="_blank" rel="noopener">
+        <a href="https://github.com/OpenKova/kova-agent" class="cta cta-github" target="_blank" rel="noopener">
           <svg class="cta-icon" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
           </svg>

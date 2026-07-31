@@ -2419,7 +2419,7 @@ checkout_git_openclaw_ref() {
     if [[ "$ref" =~ ^(v[0-9]+\.[0-9]+\.[0-9]+)-[0-9]+$ ]]; then
         local base_ref="${BASH_REMATCH[1]}"
         if git -C "$repo_dir" rev-parse --verify --quiet "refs/tags/${base_ref}^{commit}" >/dev/null; then
-            log "Git tag ${ref} not found; falling back to ${base_ref}"
+            ui_info "Git tag ${ref} not found; falling back to ${base_ref}"
             run_quiet_step "Checking out ${base_ref}" git -C "$repo_dir" checkout --detach "$base_ref"
             return 0
         fi

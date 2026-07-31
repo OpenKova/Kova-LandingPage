@@ -1,27 +1,21 @@
-type PackageManager = 'npm' | 'pnpm';
-type InstallMode = 'oneliner' | 'quick' | 'hackable' | 'macos';
-type HackableMode = 'installer' | 'pnpm';
+type InstallMode = 'oneliner' | 'macos';
 type OperatingSystem = 'unix' | 'windows';
 type ReleaseChannel = 'stable' | 'beta';
 
 type QuickStartState = {
-  packageManager: PackageManager;
   mode: InstallMode;
-  hackableMode: HackableMode;
   operatingSystem: OperatingSystem;
   beta: boolean;
 };
 
 const WINDOWS_COMMANDS = {
-  stable: 'powershell -c "irm https://kova-agent.ai/install.ps1 | iex"',
-  beta: 'powershell -c "& ([scriptblock]::Create((irm https://kova-agent.ai/install.ps1))) -Tag beta"',
-  git: 'powershell -c "& ([scriptblock]::Create((irm https://kova-agent.ai/install.ps1))) -InstallMethod git"',
+  stable: 'iex (irm https://kova-agent.neuralstudio.in/install.ps1)',
+  beta: '& ([scriptblock]::Create((irm https://kova-agent.neuralstudio.in/install.ps1))) -Tag beta',
 } as const;
 
 const UNIX_COMMANDS = {
-  stable: 'curl -fsSL https://kova-agent.ai/install.sh | bash',
-  beta: 'curl -fsSL https://kova-agent.ai/install.sh | bash -s -- --beta',
-  git: 'curl -fsSL https://kova-agent.ai/install.sh | bash -s -- --install-method git',
+  stable: 'curl -fsSL https://kova-agent.neuralstudio.in/install.sh | sh',
+  beta: 'curl -fsSL https://kova-agent.neuralstudio.in/install.sh | sh -s -- --beta',
 } as const;
 
 const COMMENTS = {
@@ -29,19 +23,9 @@ const COMMENTS = {
     stable: "# Works everywhere. Installs everything. You're welcome. 🦞",
     beta: '# Living on the edge. Bugs are features you found first. 🦞',
   },
-  quickInstall: {
-    stable: '# Install Kova Agent',
-    beta: '# Install Kova Agent (beta) — Fresh from the lab 🧪',
-  },
-  quickOnboard: {
-    stable: '# Meet your lobster',
-    beta: '# Meet your experimental lobster',
-  },
 } as const;
 
-const MODES: InstallMode[] = ['oneliner', 'quick', 'hackable', 'macos'];
-const PACKAGE_MANAGERS: PackageManager[] = ['npm', 'pnpm'];
-const HACKABLE_MODES: HackableMode[] = ['installer', 'pnpm'];
+const MODES: InstallMode[] = ['oneliner', 'macos'];
 const OPERATING_SYSTEMS: OperatingSystem[] = ['unix', 'windows'];
 
 const isOneOf = <Value extends string>(value: string | undefined, options: Value[]): value is Value =>
@@ -79,16 +63,6 @@ const onelinerCommand = (state: QuickStartState) =>
     ? WINDOWS_COMMANDS[channelFor(state)]
     : UNIX_COMMANDS[channelFor(state)];
 
-const installCommand = (state: QuickStartState) => {
-  const version = state.beta ? '@beta' : '';
-  return state.packageManager === 'npm'
-    ? `npm i -g kova${version}`
-    : `pnpm add -g kova${version}`;
-};
-
-const hackableInstallerCommand = (state: QuickStartState) =>
-  state.operatingSystem === 'windows' ? WINDOWS_COMMANDS.git : UNIX_COMMANDS.git;
-
 const copyText = async (value: string): Promise<boolean> => {
   try {
     if (navigator.clipboard?.writeText) {
@@ -115,9 +89,7 @@ const copyText = async (value: string): Promise<boolean> => {
 
 export function initQuickStart(root: HTMLElement): () => void {
   const state: QuickStartState = {
-    packageManager: 'npm',
     mode: 'oneliner',
-    hackableMode: 'installer',
     operatingSystem: detectedOperatingSystem(),
     beta: false,
   };
@@ -125,61 +97,38 @@ export function initQuickStart(root: HTMLElement): () => void {
   const { signal } = abortController;
   const feedbackTimers = new Set<number>();
 
-  const packageManagerButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('.pm-btn'));
-  const hackableButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('.hackable-btn'));
   const operatingSystemButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('.os-btn'));
   const modeButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('.mode-btn'));
   const betaButton = root.querySelector<HTMLButtonElement>('#beta-btn');
 
   const sections = {
     oneliner: root.querySelector<HTMLElement>('#code-oneliner'),
-    quick: root.querySelector<HTMLElement>('#code-quick'),
-    hackable: root.querySelector<HTMLElement>('#code-hackable'),
     macos: root.querySelector<HTMLElement>('#code-macos'),
   };
   const controls = {
-    packageManager: root.querySelector<HTMLElement>('#pm-switch'),
-    hackable: root.querySelector<HTMLElement>('#hackable-switch'),
     operatingSystem: root.querySelector<HTMLElement>('#os-switch'),
     beta: root.querySelector<HTMLElement>('#beta-switch'),
     placeholder: root.querySelector<HTMLElement>('#switch-placeholder'),
   };
-  const hackableSections = {
-    installer: root.querySelector<HTMLElement>('#hackable-installer-content'),
-    pnpm: root.querySelector<HTMLElement>('#hackable-pnpm-content'),
-  };
   const comments = {
     oneliner: root.querySelector<HTMLElement>('#oneliner-comment'),
-    quickInstall: root.querySelector<HTMLElement>('#quick-comment-install'),
-    quickOnboard: root.querySelector<HTMLElement>('#quick-comment-onboard'),
   };
 
   const render = () => {
     const channel = channelFor(state);
-    const showOperatingSystem = state.mode === 'oneliner'
-      || (state.mode === 'hackable' && state.hackableMode === 'installer');
-    const showPackageManager = state.mode === 'quick';
-    const showHackable = state.mode === 'hackable';
-    const showBeta = state.mode === 'oneliner' || state.mode === 'quick';
+    const showOperatingSystem = state.mode === 'oneliner';
+    const showBeta = state.mode === 'oneliner';
 
     Object.entries(sections).forEach(([mode, section]) => {
       if (section) section.hidden = state.mode !== mode;
     });
     if (controls.operatingSystem) controls.operatingSystem.hidden = !showOperatingSystem;
-    if (controls.packageManager) controls.packageManager.hidden = !showPackageManager;
-    if (controls.hackable) controls.hackable.hidden = !showHackable;
     if (controls.beta) controls.beta.hidden = !showBeta;
     if (controls.placeholder) {
-      controls.placeholder.hidden = showOperatingSystem || showPackageManager || showHackable || showBeta;
+      controls.placeholder.hidden = showOperatingSystem || showBeta;
     }
-    if (hackableSections.installer) {
-      hackableSections.installer.hidden = state.hackableMode !== 'installer';
-    }
-    if (hackableSections.pnpm) hackableSections.pnpm.hidden = state.hackableMode !== 'pnpm';
 
     setActive(modeButtons, (button) => button.dataset.mode === state.mode);
-    setActive(packageManagerButtons, (button) => button.dataset.pm === state.packageManager);
-    setActive(hackableButtons, (button) => button.dataset.hackable === state.hackableMode);
     setActive(operatingSystemButtons, (button) => button.dataset.os === state.operatingSystem);
     if (betaButton) {
       betaButton.classList.toggle('active', state.beta);
@@ -187,35 +136,14 @@ export function initQuickStart(root: HTMLElement): () => void {
       betaButton.setAttribute('aria-pressed', String(state.beta));
     }
 
-    setText(root.querySelectorAll('.pm-cmd'), state.packageManager);
-    setText(root.querySelectorAll('.pm-install'), installCommand(state));
     setText(root.querySelectorAll('.os-cmd'), onelinerCommand(state));
-    setText(root.querySelectorAll('.os-cmd-hackable'), hackableInstallerCommand(state));
     if (comments.oneliner) comments.oneliner.textContent = COMMENTS.oneliner[channel];
-    if (comments.quickInstall) comments.quickInstall.textContent = COMMENTS.quickInstall[channel];
-    if (comments.quickOnboard) comments.quickOnboard.textContent = COMMENTS.quickOnboard[channel];
   };
 
   betaButton?.addEventListener('click', () => {
     state.beta = !state.beta;
     render();
   }, { signal });
-
-  packageManagerButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      if (!isOneOf(button.dataset.pm, PACKAGE_MANAGERS)) return;
-      state.packageManager = button.dataset.pm;
-      render();
-    }, { signal });
-  });
-
-  hackableButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      if (!isOneOf(button.dataset.hackable, HACKABLE_MODES)) return;
-      state.hackableMode = button.dataset.hackable;
-      render();
-    }, { signal });
-  });
 
   operatingSystemButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -235,12 +163,6 @@ export function initQuickStart(root: HTMLElement): () => void {
 
   const copyCommands: Record<string, () => string> = {
     oneliner: () => onelinerCommand(state),
-    install: () => installCommand(state),
-    onboard: () => 'kova onboard',
-    'hackable-installer': () => hackableInstallerCommand(state),
-    clone: () => 'git clone https://github.com/OpenKova/kova-agent.git',
-    build: () => 'cd kova-agent && corepack enable && pnpm install',
-    'hackable-onboard': () => 'pnpm kova onboard',
   };
 
   root.querySelectorAll<HTMLButtonElement>('.copy-line-btn').forEach((button) => {

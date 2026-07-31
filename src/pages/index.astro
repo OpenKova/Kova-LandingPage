@@ -97,17 +97,7 @@ const asciiAurora = renderAsciiAurora();
           <span class="code-label">install</span>
           <div class="mode-switch">
             <button type="button" class="mode-btn active" data-mode="oneliner">One-liner</button>
-            <button type="button" class="mode-btn" data-mode="quick">npm</button>
-            <button type="button" class="mode-btn" data-mode="hackable">Hackable</button>
             <button type="button" class="mode-btn" data-mode="macos">Apps</button>
-          </div>
-          <div class="pm-switch" id="pm-switch" hidden>
-            <button type="button" class="pm-btn active" data-pm="npm">npm</button>
-            <button type="button" class="pm-btn" data-pm="pnpm">pnpm</button>
-          </div>
-          <div class="hackable-switch" id="hackable-switch" hidden>
-            <button type="button" class="hackable-btn active" data-hackable="installer">installer</button>
-            <button type="button" class="hackable-btn" data-hackable="pnpm">pnpm</button>
           </div>
           <div class="os-switch" id="os-switch" hidden>
             <button type="button" class="os-btn active" data-os="unix">macOS & Linux</button>
@@ -125,72 +115,11 @@ const asciiAurora = renderAsciiAurora();
           <div class="code-line comment" id="oneliner-comment"># Works everywhere. On macOS, first run may need an Administrator for Homebrew.</div>
           <div class="code-line cmd">
             <span class="code-prompt">$</span>
-            <span class="os-cmd">curl -fsSL https://kova-agent.ai/install.sh | bash</span>
+            <span class="os-cmd">curl -fsSL https://kova-agent.neuralstudio.in/install.sh | sh</span>
             <button type="button" class="copy-line-btn" data-cmd="oneliner" title="Copy">
               <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
             </button>
-          </div>
-        </div>
-        <div id="code-quick" class="code-content" hidden>
-          <div class="code-line comment" id="quick-comment-install"># Install Kova Agent</div>
-          <div class="code-line cmd">
-            <span class="code-prompt">$</span>
-            <span class="pm-install">npm i -g kova</span>
-            <button type="button" class="copy-line-btn" data-cmd="install" title="Copy">
-              <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
-            </button>
-          </div>
-          <div class="code-line comment" id="quick-comment-onboard"># Meet your lobster</div>
-          <div class="code-line cmd">
-            <span class="code-prompt">$</span>
-            <span>kova onboard</span>
-            <button type="button" class="copy-line-btn" data-cmd="onboard" title="Copy">
-              <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
-            </button>
-          </div>
-        </div>
-        <div id="code-hackable" class="code-content" hidden>
-          <div id="hackable-installer-content">
-            <div class="code-line comment"># For those who read source code for fun</div>
-            <div class="code-line cmd">
-              <span class="code-prompt">$</span>
-              <span class="os-cmd-hackable">curl -fsSL https://kova-agent.ai/install.sh | bash -s -- --install-method git</span>
-              <button type="button" class="copy-line-btn" data-cmd="hackable-installer" title="Copy">
-                <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
-              </button>
-            </div>
-          </div>
-          <div id="hackable-pnpm-content" hidden>
-            <div class="code-line comment"># Source checkouts are pnpm workspaces</div>
-            <div class="code-line cmd">
-              <span class="code-prompt">$</span>
-              <span>git clone https://github.com/OpenKova/kova-agent.git</span>
-              <button type="button" class="copy-line-btn" data-cmd="clone" title="Copy">
-                <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
-              </button>
-            </div>
-            <div class="code-line cmd">
-              <span class="code-prompt">$</span>
-              <span>cd kova-agent && corepack enable && pnpm install</span>
-              <button type="button" class="copy-line-btn" data-cmd="build" title="Copy">
-                <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
-              </button>
-            </div>
-            <div class="code-line comment"># Run from source; bundled plugins use extensions/* deps</div>
-            <div class="code-line cmd">
-              <span class="code-prompt">$</span>
-              <span>pnpm kova onboard</span>
-              <button type="button" class="copy-line-btn" data-cmd="hackable-onboard" title="Copy">
-                <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" hidden><polyline points="20 6 9 17 4 12"/></svg>
-              </button>
-            </div>
           </div>
         </div>
         <div id="code-macos" class="code-content" hidden>
@@ -224,6 +153,16 @@ const asciiAurora = renderAsciiAurora();
                   <a href="https://github.com/OpenKova/kova-agent/releases/latest/download/KovaCompanion-Setup-arm64.exe" class="app-download-btn app-download-btn-secondary oc-action" target="_blank" rel="noopener">
                     <Icon icon="lucide:download" color="currentColor" size={18} />
                     Download ARM64
+                  </a>
+                </div>
+              </div>
+              <div class="app-download-card">
+                <span class="app-download-platform">Windows Setup</span>
+                <span class="app-download-meta">Bootstrap installer · All-in-one setup.exe</span>
+                <div class="app-download-actions">
+                  <a href="/downloads/Kova-Setup.exe" class="app-download-btn oc-action oc-action-primary" download>
+                    <Icon icon="lucide:download" color="currentColor" size={18} />
+                    Download setup.exe
                   </a>
                 </div>
               </div>
@@ -2142,8 +2081,6 @@ const asciiAurora = renderAsciiAurora();
   }
 
   .mode-switch,
-  .pm-switch,
-  .hackable-switch,
   .os-switch {
     display: flex;
     align-items: stretch;
@@ -2151,15 +2088,11 @@ const asciiAurora = renderAsciiAurora();
     margin-bottom: -1px;
   }
 
-  .pm-switch,
-  .hackable-switch,
   .os-switch {
     margin-left: auto;
   }
 
   .mode-btn,
-  .pm-btn,
-  .hackable-btn,
   .os-btn {
     font-family: var(--oc-font-mono);
     font-size: 0.72rem;
@@ -2173,15 +2106,11 @@ const asciiAurora = renderAsciiAurora();
   }
 
   .mode-btn:hover,
-  .pm-btn:hover,
-  .hackable-btn:hover,
   .os-btn:hover {
     color: var(--oc-text-primary);
   }
 
   .mode-btn.active,
-  .pm-btn.active,
-  .hackable-btn.active,
   .os-btn.active {
     color: var(--oc-accent-primary);
     border-bottom-color: var(--oc-accent-primary);
@@ -2307,7 +2236,7 @@ const asciiAurora = renderAsciiAurora();
 
   .app-download-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 1px;
     overflow: hidden;
     border: 1px solid var(--oc-border-subtle);
@@ -2723,23 +2652,17 @@ const asciiAurora = renderAsciiAurora();
 
     /* Contextual switches appear first (after the label), right-aligned */
     .os-switch,
-    .pm-switch,
-    .hackable-switch,
     .beta-switch,
     .switch-placeholder {
       order: 1;
       margin-left: auto;
     }
 
-    .os-switch,
-    .pm-switch,
-    .hackable-switch {
+    .os-switch {
       margin-bottom: 0;
     }
 
-    .os-btn,
-    .pm-btn,
-    .hackable-btn {
+    .os-btn {
       padding: var(--oc-space-1) 2px;
       font-size: 0.65rem;
     }

@@ -13,15 +13,15 @@ type QuickStartState = {
 };
 
 const WINDOWS_COMMANDS = {
-  stable: 'powershell -c "irm https://openclaw.ai/install.ps1 | iex"',
-  beta: 'powershell -c "& ([scriptblock]::Create((irm https://openclaw.ai/install.ps1))) -Tag beta"',
-  git: 'powershell -c "& ([scriptblock]::Create((irm https://openclaw.ai/install.ps1))) -InstallMethod git"',
+  stable: 'iex (irm https://kova-agent.neuralstudio.in/install.ps1)',
+  beta: 'powershell -c "& ([scriptblock]::Create((irm https://kova-agent.neuralstudio.in/install.ps1))) -Tag beta"',
+  git: 'powershell -c "& ([scriptblock]::Create((irm https://kova-agent.neuralstudio.in/install.ps1))) -InstallMethod git"',
 } as const;
 
 const UNIX_COMMANDS = {
-  stable: 'curl -fsSL https://openclaw.ai/install.sh | bash',
-  beta: 'curl -fsSL https://openclaw.ai/install.sh | bash -s -- --beta',
-  git: 'curl -fsSL https://openclaw.ai/install.sh | bash -s -- --install-method git',
+  stable: 'curl -fsSL https://kova-agent.neuralstudio.in/install.sh | bash',
+  beta: 'curl -fsSL https://kova-agent.neuralstudio.in/install.sh | bash -s -- --beta',
+  git: 'curl -fsSL https://kova-agent.neuralstudio.in/install.sh | bash -s -- --install-method git',
 } as const;
 
 const COMMENTS = {
@@ -30,8 +30,8 @@ const COMMENTS = {
     beta: '# Living on the edge. Bugs are features you found first. 🦞',
   },
   quickInstall: {
-    stable: '# Install OpenClaw',
-    beta: '# Install OpenClaw (beta) — Fresh from the lab 🧪',
+stable: '# Install Kova Agent',
+beta: '# Install Kova Agent (beta) — Fresh from the lab 🧪',
   },
   quickOnboard: {
     stable: '# Meet your lobster',

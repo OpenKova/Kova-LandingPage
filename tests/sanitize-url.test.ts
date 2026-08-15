@@ -6,7 +6,7 @@ describe('sanitizeUrl', () => {
     expect(sanitizeUrl('https://x.com/openclaw')).toBe('https://x.com/openclaw');
     expect(sanitizeUrl('http://example.com/path')).toBe('http://example.com/path');
     expect(sanitizeUrl('mailto:security@openclaw.ai')).toBe('mailto:security@openclaw.ai');
-    expect(sanitizeUrl('/blog#security')).toBe('/blog#security');
+    expect(sanitizeUrl('/privacy')).toBe('/privacy');
   });
 
   test('blocks dangerous protocols', () => {

@@ -19,7 +19,6 @@
     ]
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.19",
     "@lucide/astro": "^1.22.0",
     "@openclaw/carapace": "git+https://github.com/openclaw/carapace.git#v0.2.0",
     "@vercel/analytics": "^2.0.1",

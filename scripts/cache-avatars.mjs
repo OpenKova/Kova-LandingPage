@@ -2,7 +2,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { load as loadYaml } from 'js-yaml';
 import sharp from 'sharp';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -17,7 +16,6 @@ const dataFiles = [
   'src/data/testimonials-extra.json',
   'src/data/showcase.json',
 ];
-const blogDir = path.join(root, 'src', 'content', 'blog');
 
 function normalizeHandle(handle) {
   const normalized = String(handle ?? '').replace(/^@/, '').trim().toLowerCase();
@@ -26,23 +24,6 @@ function normalizeHandle(handle) {
 
 async function readJson(relativePath) {
   return JSON.parse(await fs.readFile(path.join(root, relativePath), 'utf8'));
-}
-
-async function collectBlogHandles(handles) {
-  const entries = await fs.readdir(blogDir, { withFileTypes: true });
-  for (const entry of entries) {
-    if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
-
-    const content = await fs.readFile(path.join(blogDir, entry.name), 'utf8');
-    const match = /^---\n([\s\S]*?)\n---/.exec(content);
-    if (!match) continue;
-
-    const frontmatter = loadYaml(match[1]) ?? {};
-    if (frontmatter.authorHandle) handles.add(normalizeHandle(frontmatter.authorHandle));
-    for (const author of frontmatter.authors ?? []) {
-      if (author?.handle && !author.avatar) handles.add(normalizeHandle(author.handle));
-    }
-  }
 }
 
 async function collectHandles() {
@@ -55,7 +36,6 @@ async function collectHandles() {
     }
   }
 
-  await collectBlogHandles(handles);
   handles.delete('');
   return [...handles].sort((a, b) => a.localeCompare(b));
 }

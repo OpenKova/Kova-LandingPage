@@ -48,7 +48,7 @@
       ]
     },
     {
-      "source": "/(sitemap\\.xml|sitemap-index\\.xml|news-sitemap\\.xml|robots\\.txt|llms\\.txt|rss\\.xml)",
+      "source": "/(sitemap\\.xml|sitemap-index\\.xml|robots\\.txt|llms\\.txt)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -167,74 +167,6 @@
       ],
       "destination": "https://discord.gg/clawd",
       "statusCode": 302
-    },
-    {
-      "source": "/blog/performance-size-supply-chain-sweep",
-      "destination": "/blog/lighter-core-sharper-claws/",
-      "statusCode": 308
-    },
-    {
-      "source": "/blog/performance-size-supply-chain-sweep/",
-      "destination": "/blog/lighter-core-sharper-claws/",
-      "statusCode": 308
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "host",
-          "value": "blog.openclaw.ai"
-        }
-      ],
-      "destination": "https://openclaw.ai/blog/:path*",
-      "statusCode": 308
-    },
-    {
-      "source": "/:path*/",
-      "has": [
-        {
-          "type": "header",
-          "key": "host",
-          "value": "blog.openclaw.ai"
-        }
-      ],
-      "destination": "https://openclaw.ai/blog/:path*/",
-      "statusCode": 308
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "host",
-          "value": "trust.openclaw.ai"
-        }
-      ],
-      "destination": "https://openclaw.ai/blog#security",
-      "statusCode": 308
-    },
-    {
-      "source": "/:path*/",
-      "has": [
-        {
-          "type": "header",
-          "key": "host",
-          "value": "trust.openclaw.ai"
-        }
-      ],
-      "destination": "https://openclaw.ai/blog#security",
-      "statusCode": 308
-    },
-    {
-      "source": "/trust/:path*",
-      "destination": "/blog#security",
-      "statusCode": 308
-    },
-    {
-      "source": "/trust/:path*/",
-      "destination": "/blog#security",
-      "statusCode": 308
     },
     {
       "source": "/:path*",

@@ -5,7 +5,6 @@ import { fileURLToPath } from 'node:url';
 import { siGmail, siGooglechrome, siX } from 'simple-icons';
 import { bottomIntegrationRail } from '../src/data/homepage-integrations';
 import { channels, companionNodes, featuredProviders, gatewayHosts } from '../src/data/integrations';
-import { resolveAuthorProfile } from '../src/lib/authors';
 import { getCachedXAvatarSrc, getInitialsAvatarSrc } from '../src/lib/avatars';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -34,17 +33,6 @@ function listSourceFiles(relativeDir: string): string[] {
 }
 
 describe('static public assets', () => {
-  test('renders blog descriptions as escaped text instead of raw HTML', () => {
-    const articlePage = readText('src/pages/blog/[...slug].astro');
-    const contentSchema = readText('src/content.config.ts');
-    const blogSources = listSourceFiles('src/content/blog').map(readText);
-
-    expect(articlePage).toContain('<p class="dek">{post.data.description}</p>');
-    expect(articlePage).not.toContain('set:html');
-    expect(contentSchema).not.toContain('descriptionHtml');
-    expect(blogSources.every((source) => !source.includes('descriptionHtml:'))).toBe(true);
-  });
-
   test('uses the canonical OpenClaw Carapace contract', () => {
     const layout = readText('src/layouts/Layout.astro');
     const orderedImports = [
@@ -166,7 +154,6 @@ describe('static public assets', () => {
 
   test('keeps X avatar lookup on local cached assets before falling back', () => {
     expect(getCachedXAvatarSrc('@steipete')).toBe('/avatars/x/steipete.jpg');
-    expect(resolveAuthorProfile({ name: 'Josh Avant' }).avatar).toBe('/avatars/x/joshavant.jpg');
     expect(getCachedXAvatarSrc('not-a-cached-profile', 'Missing Profile')).toBe(
       getInitialsAvatarSrc('Missing Profile'),
     );
@@ -339,7 +326,7 @@ describe('static public assets', () => {
   test('uses a compact expandable site navigation on mobile', () => {
     const topbar = readText('src/components/SiteTopbar.astro');
 
-    expect(topbar).toContain("import { FileText, Megaphone } from '@lucide/astro'");
+    expect(topbar).toContain("import { FileText } from '@lucide/astro'");
     expect(topbar).toContain('class="site-nav site-nav-desktop"');
     expect(topbar).toContain('<details class="site-menu">');
     expect(topbar).toContain('class="site-menu-toggle"');

@@ -11,11 +11,8 @@ export function Footer() {
               Kova
             </span>
           </div>
-          <p className="mt-3 max-w-xs text-xs leading-relaxed" style={{ color: "var(--oc-text-muted)" }}>
-            {SITE.description}
-          </p>
           <p className="mt-4 text-[11px]" style={{ color: "var(--oc-text-muted)", fontFamily: "var(--oc-font-mono)" }}>
-            © {new Date().getFullYear()} Kova · MIT · Open source
+            © {new Date().getFullYear()} Kova · MIT · Open source · v{SITE.version}
           </p>
         </div>
         <div className="flex gap-10">

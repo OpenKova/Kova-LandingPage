@@ -1,11 +1,13 @@
 export const SITE = {
   name: "Kova",
   tagline: "agent that evolves with you.",
+  version: "0.2.0",
   description:
     "The self-improving AI agent. One agent core, every surface: CLI, desktop, Telegram, Discord, Slack, WhatsApp and more. It creates skills from experience, remembers who you are, runs scheduled routines, and drives a real terminal and browser.",
 } as const;
 
 export const NAV_LINKS = [
+  { label: "Messaging", href: "/messaging" },
   { label: "Features", href: "#features" },
   { label: "FAQ", href: "#faq" },
 ] as const;
@@ -92,13 +94,17 @@ export const FOOTER_COLUMNS = [
   {
     title: "Product",
     links: [
+      { label: "Messaging", href: "/messaging" },
       { label: "Features", href: "#features" },
       { label: "Download", href: "#download" },
     ],
   },
   {
     title: "Learn",
-    links: [{ label: "FAQ", href: "#faq" }],
+    links: [
+      { label: "Docs", href: "https://kova-agent.neuralstudio.in/docs" },
+      { label: "FAQ", href: "#faq" },
+    ],
   },
   {
     title: "Connect",

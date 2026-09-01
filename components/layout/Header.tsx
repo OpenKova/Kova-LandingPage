@@ -61,6 +61,19 @@ export function Header() {
           GitHub
         </a>
         <a
+          href="https://kova-agent.neuralstudio.in/docs"
+          target="_blank"
+          rel="noopener"
+          className="ml-1 inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[13px] font-medium"
+          style={{
+            fontFamily: "var(--oc-font-mono)",
+            borderColor: "var(--oc-border-subtle)",
+            color: "var(--oc-text-primary)",
+          }}
+        >
+          Docs
+        </a>
+        <a
           href="#download"
           className="ml-1 inline-flex h-8 items-center rounded-md px-4 text-[13px] font-semibold"
           style={{ background: "var(--oc-accent-primary)", color: "var(--oc-text-on-accent)", fontFamily: "var(--oc-font-mono)" }}

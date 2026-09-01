@@ -2,21 +2,9 @@ import Image from "next/image";
 import appIcon from "../../public/icon.png";
 import { SITE } from "@/lib/constants";
 
-const ASCII_ART = ` ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
- ░░░░  KOVA  ·  AGENT  ·  AUTONOMY  ░░░░
- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-   ▓▓▓▓▓  ▓▓▓▓▓   ▓▓▓▓   ▓▓▓▓  ▓▓▓▓▓
-   ▓▓     ▓▓ ▓▓  ▓▓ ▓▓  ▓▓ ▓▓  ▓▓
-   ▓▓▓▓   ▓▓ ▓▓  ▓▓ ▓▓  ▓▓ ▓▓  ▓▓▓▓
-   ▓▓     ▓▓ ▓▓  ▓▓ ▓▓   ▓▓▓▓  ▓▓
- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░`;
-
 export function Hero() {
   return (
     <section id="download" className="hero">
-      <div className="hero-art" aria-hidden>
-        <pre>{ASCII_ART}</pre>
-      </div>
       <div className="hero-content">
         <Image
           src={appIcon}

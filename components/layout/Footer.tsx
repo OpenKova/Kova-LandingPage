@@ -97,12 +97,12 @@ export function Footer() {
               href={s.href}
               target="_blank"
               rel="noopener"
-              className="footer-social inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px]"
+              className="footer-social inline-flex items-center"
+              aria-label={s.label}
             >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5" aria-hidden>
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
                 {brandIcon(s.id)}
               </svg>
-              {s.label}
             </a>
           ))}
         </div>

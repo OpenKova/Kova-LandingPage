@@ -904,16 +904,12 @@ body {
   }
 }
 .footer-social {
-  font-family: var(--oc-font-mono);
-  font-weight: 500;
   color: var(--oc-text-muted);
-  border-color: var(--oc-border-subtle);
   text-decoration: none;
-  transition: color 0.15s, border-color 0.15s, transform 0.15s;
+  transition: color 0.15s, transform 0.15s;
 }
 .footer-social:hover {
   color: var(--oc-accent-primary);
-  border-color: color-mix(in srgb, var(--oc-accent-primary) 55%, var(--oc-border-subtle));
   transform: translateY(-1px);
 }
 

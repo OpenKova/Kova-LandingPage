@@ -45,9 +45,9 @@ export function Features() {
         ))}
         <div className="feature-card" style={{ justifyContent: "center", alignItems: "center", textAlign: "center" }}>
           <div className="text-sm font-medium" style={{ color: "var(--oc-text-muted)", fontFamily: "var(--oc-font-mono)" }}>
-            More tools on the way
+            More surfaces on the way
           </div>
-          <p className="text-xs">Clipboard sync, AI actions, and plugin marketplace coming soon.</p>
+          <p className="text-xs">Plugin marketplace, image generation, and deeper agent integrations coming soon.</p>
         </div>
       </div>
     </section>

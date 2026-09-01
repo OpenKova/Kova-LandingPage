@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import linesLogo from "../../public/kova-logo.png";
-import { NAV_LINKS } from "@/lib/constants";
+import { DOWNLOAD_URL, NAV_LINKS } from "@/lib/constants";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -67,7 +67,8 @@ export function Header() {
           Docs
         </a>
         <a
-          href="#download"
+          href={DOWNLOAD_URL}
+          download
           className="ml-1 inline-flex h-8 items-center rounded-md px-4 text-[13px] font-semibold"
           style={{ background: "var(--oc-accent-primary)", color: "var(--oc-text-on-accent)", fontFamily: "var(--oc-font-mono)" }}
         >
@@ -102,7 +103,8 @@ export function Header() {
             </a>
           ))}
           <a
-            href="#download"
+            href={DOWNLOAD_URL}
+            download
             onClick={() => setMenuOpen(false)}
             className="mt-2 rounded-md px-3 py-2 text-center text-sm font-semibold"
             style={{ background: "var(--oc-accent-primary)", color: "var(--oc-text-on-accent)" }}

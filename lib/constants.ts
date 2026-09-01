@@ -90,6 +90,8 @@ export const FOOTER_COLUMNS = [
   },
 ] as const;
 
+export const DOWNLOAD_URL = "/downloads/Kova-Setup.exe";
+
 export const BUILT_BY = {
   handle: "chiragborse1",
   href: "https://github.com/chiragborse1",

@@ -6,7 +6,8 @@ type Tab = "apps" | "one-liner";
 
 const CODE: Record<Tab, string> = {
   apps: `# Desktop apps — CLI, TUI, desktop app
-# Download from GitHub releases, double-click, done.
+# Grab the installer from the site button above,
+# or download the latest release directly:
 open https://github.com/OpenKova/kova/releases`,
   "one-liner": `# One-liner (macOS & Windows via PowerShell)
 irm https://kova.neuralstudio.in/install.ps1 | iex

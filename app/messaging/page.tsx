@@ -6,7 +6,7 @@ import { SITE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Messaging | Kova",
   description:
-    "Connect Kova to the messaging apps you already use — Telegram, Discord, Slack, WhatsApp, Signal, and more.",
+    "Connect Kova to the messaging apps you already use — Telegram, Discord, Slack, WhatsApp, Signal, and 20+ more.",
   alternates: { canonical: "/messaging" },
 };
 
@@ -18,25 +18,32 @@ type MessagingApp = {
 
 const chatChannels: MessagingApp[] = [
   {
-    name: "Telegram",
-    description: "Bot API conversations, groups, channels, and rich media. The fastest setup — just paste a bot token.",
-    tag: "Verbose",
+    name: "ClickClack",
+    description: "Self-hosted ClickClack workspaces through first-class bot tokens.",
   },
   {
     name: "Discord",
     description: "Servers, channels, DMs, slash commands, and app events. Full conversation + voice surface.",
   },
   {
-    name: "Slack",
-    description: "Channels, threads, DMs, commands, and app events over Socket Mode or a custom relay.",
+    name: "Feishu / Lark",
+    description: "Feishu (Lark) workplace chats and group messages over WebSocket — built for the APAC workplace.",
   },
   {
-    name: "WhatsApp",
-    description: "WhatsApp Web chats through QR pairing, or the Cloud API for a managed number.",
+    name: "Google Chat",
+    description: "Spaces and direct messages through a Google Chat app.",
   },
   {
-    name: "Signal",
-    description: "Privacy-focused messaging through signal-cli — native daemon or container.",
+    name: "iMessage",
+    description: "Native iMessage over the imsg bridge, or BlueBubbles for non-mac hosts.",
+  },
+  {
+    name: "IRC",
+    description: "Classic IRC channels and DMs with access controls — the old standby.",
+  },
+  {
+    name: "LINE",
+    description: "LINE Messaging API bot conversations — a fixture across Japan, Taiwan, and Thailand.",
   },
   {
     name: "Matrix",
@@ -51,44 +58,80 @@ const chatChannels: MessagingApp[] = [
     description: "Teams channels, chats, and group conversations through the Bot Framework.",
   },
   {
-    name: "Google Chat",
-    description: "Spaces and direct messages through a Google Chat app.",
+    name: "Nextcloud Talk",
+    description: "Self-hosted chat through Nextcloud Talk.",
   },
   {
-    name: "LINE",
-    description: "LINE Messaging API bot conversations — a fixture across Japan, Taiwan, and Thailand.",
+    name: "Nostr",
+    description: "Decentralized, encrypted direct messages over the Nostr protocol.",
   },
   {
-    name: "iMessage",
-    description: "Native iMessage over the imsg bridge, or BlueBubbles for non-mac hosts.",
+    name: "QQ Bot",
+    description: "Private chats, group chats, and rich media through the QQ Bot platform.",
   },
   {
-    name: "DingTalk",
-    description: "DingTalk conversations used widely across Chinese workplaces.",
+    name: "Raft",
+    description: "Raft External Agents through the Raft CLI wake bridge.",
   },
   {
-    name: "Feishu / Lark",
-    description: "Feishu (Lark) group and personal chats — built for the APAC workplace.",
+    name: "Signal",
+    description: "Privacy-focused messaging through signal-cli — native daemon or container.",
   },
   {
-    name: "WeCom",
-    description: "Tencent WeCom (WeChat Work) group and app messaging for businesses.",
-  },
-  {
-    name: "IRC",
-    description: "Classic IRC channels and DMs with access controls — the old standby.",
+    name: "Slack",
+    description: "Channels, threads, DMs, commands, and app events over Socket Mode or a custom relay.",
   },
   {
     name: "SMS",
     description: "Twilio-backed text and MMS messaging straight through the gateway.",
   },
   {
-    name: "Email",
-    description: "Send and receive via IMAP/SMTP, plus inbound webhooks for automation.",
+    name: "Synology Chat",
+    description: "Synology NAS chat through incoming and outgoing webhooks.",
+  },
+  {
+    name: "Telegram",
+    description: "Bot API conversations, groups, channels, and rich media. The fastest setup — just paste a bot token.",
+  },
+  {
+    name: "Tlon",
+    description: "Urbit-based messaging for chat workflows.",
+  },
+  {
+    name: "Twitch",
+    description: "Live chat and moderation workflows on your streams.",
+  },
+  {
+    name: "Voice Call",
+    description: "Phone conversations through Twilio, Telnyx, or Plivo.",
   },
   {
     name: "WebChat",
     description: "Gateway-hosted browser chat over WebSocket — chat from any browser tab.",
+  },
+  {
+    name: "WeChat / Weixin",
+    description: "Tencent iLink messaging through QR login with a personal WeChat account.",
+  },
+  {
+    name: "WhatsApp",
+    description: "WhatsApp Web chats through QR pairing, or the Cloud API for a managed number.",
+  },
+  {
+    name: "Yuanbao",
+    description: "Tencent Yuanbao bot conversations.",
+  },
+  {
+    name: "Zalo",
+    description: "Zalo Bot API chats and webhooks — widely used in Vietnam.",
+  },
+  {
+    name: "Zalo ClawBot",
+    description: "Owner-bound personal Zalo assistant through QR login.",
+  },
+  {
+    name: "Zalo Personal",
+    description: "Personal-account messaging through native zca-js.",
   },
 ];
 

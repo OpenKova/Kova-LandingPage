@@ -8,6 +8,14 @@ type Integration = {
   icon: ReactNode;
 };
 
+function ChatIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  );
+}
+
 const channels: Integration[] = [
   {
     name: "Telegram",
@@ -68,6 +76,13 @@ const channels: Integration[] = [
     ),
   },
   {
+    name: "SMS",
+    kind: "Channel",
+    desc: "Text via Twilio / gateway.",
+    color: "#F12E45",
+    icon: <ChatIcon />,
+  },
+  {
     name: "iMessage",
     kind: "Channel",
     desc: "Your agent inside Messages.",
@@ -83,86 +98,45 @@ const channels: Integration[] = [
     kind: "Channel",
     desc: "Your agent on the open network.",
     color: "#0DBD8B",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-      </svg>
-    ),
+    icon: <ChatIcon />,
   },
   {
     name: "Google Chat",
     kind: "Channel",
     desc: "Your agent in Spaces.",
     color: "#34A853",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z" />
-        <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
-      </svg>
-    ),
+    icon: <ChatIcon />,
   },
   {
     name: "Teams",
     kind: "Channel",
     desc: "Your agent in chats and meetings.",
     color: "#6264A7",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-      </svg>
-    ),
+    icon: <ChatIcon />,
   },
   {
     name: "LINE",
     kind: "Channel",
     desc: "Your agent in chats and groups.",
     color: "#06C755",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M12 3a9 9 0 0 1 9 9c0 4.75-4 8-9 8-1.1 0-2.1-.13-3.03-.4L4 21l1.24-3.9A8.9 8.9 0 0 1 3 12a9 9 0 0 1 9-9z" />
-      </svg>
-    ),
+    icon: <ChatIcon />,
   },
   {
     name: "Mattermost",
     kind: "Channel",
     desc: "Your agent on your team server.",
     color: "#0058CC",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z" />
-      </svg>
-    ),
+    icon: <ChatIcon />,
   },
   {
     name: "IRC",
     kind: "Channel",
     desc: "Your agent on the classic nets.",
     color: "#8C8C8C",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <polyline points="4 17 10 11 4 5" />
-        <line x1="12" x2="20" y1="19" y2="19" />
-      </svg>
-    ),
+    icon: <ChatIcon />,
   },
   {
-    name: "DingTalk",
-    kind: "Channel",
-    desc: "Your agent in the workplace.",
-    color: "#0089FF",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-      </svg>
-    ),
-  },
-  {
-    name: "Feishu",
+    name: "Feishu / Lark",
     kind: "Channel",
     desc: "Your agent in Lark chats.",
     color: "#00A6FF",
@@ -175,33 +149,109 @@ const channels: Integration[] = [
     ),
   },
   {
-    name: "WeCom",
+    name: "ClickClack",
     kind: "Channel",
-    desc: "Your agent with your company.",
-    color: "#FF6633",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18" />
-        <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-        <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-        <path d="M10 6h4" />
-        <path d="M10 10h4" />
-        <path d="M10 14h4" />
-        <path d="M10 18h4" />
-      </svg>
-    ),
+    desc: "Self-hosted workspaces via bot tokens.",
+    color: "#FF6B4A",
+    icon: <ChatIcon />,
   },
   {
-    name: "Email",
-    kind: "Inbox",
-    desc: "Your agent in your inbox.",
-    color: "#EA4335",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect width="20" height="16" x="2" y="4" rx="2" />
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-      </svg>
-    ),
+    name: "Nextcloud Talk",
+    kind: "Channel",
+    desc: "Self-hosted chat on Nextcloud.",
+    color: "#0082C9",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "Nostr",
+    kind: "Channel",
+    desc: "Decentralized encrypted DMs.",
+    color: "#8F2CFF",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "QQ Bot",
+    kind: "Channel",
+    desc: "Private and group chats.",
+    color: "#1EBAFC",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "Raft",
+    kind: "Channel",
+    desc: "Raft External Agents via wake bridge.",
+    color: "#FBF6EE",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "Synology Chat",
+    kind: "Channel",
+    desc: "NAS chat via webhooks.",
+    color: "#B6D957",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "Tlon",
+    kind: "Channel",
+    desc: "Urbit-based chat workflows.",
+    color: "#8A63D2",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "Twitch",
+    kind: "Channel",
+    desc: "Live chat and moderation.",
+    color: "#9146FF",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "Voice Call",
+    kind: "Channel",
+    desc: "Phone conversations via Twilio.",
+    color: "#F97316",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "WebChat",
+    kind: "Channel",
+    desc: "Browser chat over WebSocket.",
+    color: "#00E5CC",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "WeChat / Weixin",
+    kind: "Channel",
+    desc: "Tencent iLink via QR login.",
+    color: "#07C160",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "Yuanbao",
+    kind: "Channel",
+    desc: "Tencent Yuanbao bot chats.",
+    color: "#00CC70",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "Zalo",
+    kind: "Channel",
+    desc: "Zalo Bot API chats.",
+    color: "#0068FF",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "Zalo ClawBot",
+    kind: "Channel",
+    desc: "Personal Zalo assistant.",
+    color: "#00A8FF",
+    icon: <ChatIcon />,
+  },
+  {
+    name: "Zalo Personal",
+    kind: "Channel",
+    desc: "Personal zca-js messaging.",
+    color: "#0068FF",
+    icon: <ChatIcon />,
   },
 ];
 
@@ -368,7 +418,7 @@ export function IntegrationsPreview() {
         <a className="integrations-link" href="/messaging">
           Explore all apps <Arrow />
         </a>
-        <a className="integrations-link" href="https://kova-agent.neuralstudio.in/docs">
+        <a className="integrations-link" href="https://kova-agent.neuralstudio.in/docs/user-guide/messaging/">
           Read the docs <Arrow />
         </a>
       </div>

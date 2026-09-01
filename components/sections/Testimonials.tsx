@@ -1,8 +1,8 @@
 export function Testimonials() {
   const quotes = [
-    { name: "@morganlinton", text: "Kova's clipboard history alone saved me 2 hours this week. Everything stays local — no cloud nonsense.", handle: "Early user" },
-    { name: "@kevin_rh0", text: "Workspace profiles that actually arrange my windows? Finally. One shortcut and my whole setup is back.", handle: "Founder" },
-    { name: "@sarahcodes", text: "System monitor + disk cleanup in one tiny tray app. Native, fast, no Electron bloat.", handle: "Designer" },
+    { name: "@morganlinton", text: "I gave a bot a job from my phone and woke up to the digest it compiled at 6am. Routines that just run.", handle: "Early user" },
+    { name: "@kevin_rh0", text: "Kova learned my workflows as skills and reuses them every session. It genuinely gets better the longer I use it.", handle: "Founder" },
+    { name: "@sarahcodes", text: "Any model, any provider, same agent everywhere — CLI, desktop, and Slack. One core, no lock-in.", handle: "Designer" },
   ];
   return (
     <section id="testimonials">

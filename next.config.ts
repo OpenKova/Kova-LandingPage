@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/docs/:path*",
-        destination: `${DOCS_ORIGIN}/:path*`,
+        destination: `${DOCS_ORIGIN}/docs/:path*`,
       },
     ];
   },

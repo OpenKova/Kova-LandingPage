@@ -1,12 +1,12 @@
 export function IntegrationsPreview() {
-  const tools = ["VS Code", "Chrome", "Figma", "Slack", "Notion", "Discord", "Terminal", "Spotify", "Raycast", "Alfred", "1Password", "Linear"];
+  const tools = ["Telegram", "Discord", "Slack", "WhatsApp", "Signal", "Matrix", "Mattermost", "Teams", "Google Chat", "Line", "IRC", "DingTalk", "Feishu", "WeCom", "SMS", "Email", "iMessage", "OpenRouter", "Anthropic", "OpenAI", "Google", "DeepSeek", "xAI", "Nous"];
 
   return (
     <section id="integrations">
       <div className="mb-6 flex items-baseline justify-between">
-        <h2 className="oc-eyebrow">Works With Everything</h2>
+        <h2 className="oc-eyebrow">Everywhere You Are</h2>
         <a href="#features" className="text-xs font-medium" style={{ color: "var(--oc-text-muted)", fontFamily: "var(--oc-font-mono)" }}>
-          Your apps, your workflows →
+          Your bots, your platforms →
         </a>
       </div>
       <div className="overflow-hidden rounded-xl border" style={{ borderColor: "var(--oc-border-subtle)", background: "var(--oc-surface-card)" }}>
@@ -27,8 +27,8 @@ export function IntegrationsPreview() {
           ))}
         </div>
         <div className="border-t px-4 py-3 text-xs" style={{ borderColor: "var(--oc-border-subtle)", color: "var(--oc-text-muted)" }}>
-          Kova watches your workspace — not your cloud. Profiles auto-open and arrange your apps exactly where you left
-          them.
+          One agent core, every surface. The same Kova answers from your terminal, your desktop app, and every
+          messaging platform you already use.
         </div>
       </div>
     </section>

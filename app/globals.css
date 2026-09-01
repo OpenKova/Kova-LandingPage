@@ -38,9 +38,9 @@
 :root,
 html[data-theme="dark"] {
   color-scheme: dark;
-  --oc-bg-page: #101012;
-  --oc-bg-surface: #19191c;
-  --oc-bg-elevated: #202024;
+  --oc-bg-page: #000000;
+  --oc-bg-surface: #060607;
+  --oc-bg-elevated: #0d0d0f;
   --oc-accent-primary: #f5654a;
   --oc-accent-primary-hover: #e05540;
   --oc-text-primary: #ededed;
@@ -49,7 +49,7 @@ html[data-theme="dark"] {
   --oc-text-on-accent: #101012;
   --oc-border-subtle: #9a9aa22e;
   --oc-border-accent: #f5654a66;
-  --oc-surface-card: #19191cb8;
+  --oc-surface-card: #0d0d0fb8;
   --oc-chart-line: #ededed17;
   --oc-surface-interactive: #ededed14;
   --oc-surface-interactive-hover: #ededed29;

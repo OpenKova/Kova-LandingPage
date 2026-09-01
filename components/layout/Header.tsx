@@ -34,16 +34,6 @@ export function Header() {
         >
           Kova
         </span>
-        <span
-          className="hidden rounded-full border px-2 py-0.5 text-[10px] font-medium tracking-widest md:inline"
-          style={{
-            fontFamily: "var(--oc-font-mono)",
-            color: "var(--oc-text-muted)",
-            borderColor: "var(--oc-border-subtle)",
-          }}
-        >
-          BETA
-        </span>
       </Link>
 
       <nav className="hidden items-center gap-1 md:flex" aria-label="Main">

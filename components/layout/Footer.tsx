@@ -6,7 +6,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-[1060px] flex-col gap-8 px-6 py-10 md:flex-row md:justify-between md:px-7">
         <div>
           <div className="flex items-center gap-2">
-            <img src="/kova-logo.png" alt="" width={20} height={20} className="h-5 w-5" />
+            <img src="/kova-logo.png" alt="" className="h-5 w-auto object-contain" style={{ width: "auto", height: "20px" }} />
             <span className="text-sm font-semibold" style={{ fontFamily: "var(--oc-font-display)" }}>
               Kova
             </span>
@@ -15,7 +15,7 @@ export function Footer() {
             {SITE.description}
           </p>
           <p className="mt-4 text-[11px]" style={{ color: "var(--oc-text-muted)", fontFamily: "var(--oc-font-mono)" }}>
-            © {new Date().getFullYear()} Kova · MIT · Built with Tauri & Rust
+            © {new Date().getFullYear()} Kova · MIT · Open source
           </p>
         </div>
         <div className="flex gap-10">

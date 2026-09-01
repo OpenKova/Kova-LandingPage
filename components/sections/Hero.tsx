@@ -44,8 +44,8 @@ export function Hero() {
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
-          <a href="https://github.com/OpenKova/kova" target="_blank" rel="noopener" className="hero-cta hero-cta-ghost">
-            View on GitHub
+          <a href="https://kova-agent.neuralstudio.in/docs" target="_blank" rel="noopener" className="hero-cta hero-cta-ghost">
+            Read the docs
           </a>
         </div>
         <p className="mt-4 text-xs" style={{ color: "var(--oc-text-muted)", fontFamily: "var(--oc-font-mono)" }}>

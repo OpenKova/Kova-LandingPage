@@ -89,3 +89,16 @@ export const FOOTER_COLUMNS = [
     ],
   },
 ] as const;
+
+export const BUILT_BY = {
+  handle: "chiragborse1",
+  href: "https://github.com/chiragborse1",
+} as const;
+
+export const SOCIALS = [
+  { id: "discord", label: "Discord", href: "https://discord.gg/eBHFpuYCMQ" },
+  { id: "x", label: "X", href: "https://x.com/getkova_ai" },
+  { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/getkova-ai/" },
+  { id: "github", label: "GitHub", href: "https://github.com/OpenKova/kova" },
+  { id: "instagram", label: "Instagram", href: "https://www.instagram.com/neuralstudio.in/" },
+] as const;

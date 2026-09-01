@@ -9,7 +9,6 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: "Messaging", href: "/messaging" },
   { label: "Features", href: "#features" },
-  { label: "FAQ", href: "#faq" },
 ] as const;
 
 export const BENTO_FEATURES = [
@@ -67,29 +66,6 @@ export const BENTO_FEATURES = [
   },
 ] as const;
 
-export const FAQ_ITEMS = [
-  {
-    question: "Do I need an account?",
-    answer:
-      "No. Bring your own API keys from any provider and run locally. Your keys, your rules.",
-  },
-  {
-    question: "Which models can I use?",
-    answer:
-      "Any model, any provider — OpenRouter, Anthropic, OpenAI, Google, Nous, local models, and 20 more. Swap mid-workflow and bring your own keys, always.",
-  },
-  {
-    question: "Where can I use Kova?",
-    answer:
-      "Everywhere you are. The same agent answers from your terminal, desktop app, and messaging platforms like Telegram, Discord and Slack.",
-  },
-  {
-    question: "Does it work while I'm away?",
-    answer:
-      "Yes. Routines run on a $5 VPS or your own server even when your machine is off.",
-  },
-] as const;
-
 export const FOOTER_COLUMNS = [
   {
     title: "Product",
@@ -103,7 +79,6 @@ export const FOOTER_COLUMNS = [
     title: "Learn",
     links: [
       { label: "Docs", href: "https://kova-agent.neuralstudio.in/docs" },
-      { label: "FAQ", href: "#faq" },
     ],
   },
   {

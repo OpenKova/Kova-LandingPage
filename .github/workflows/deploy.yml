@@ -1,0 +1,25 @@
+name: Deploy to Vercel (production)
+
+on:
+  push:
+    branches:
+      - baking
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel production deploy
+        if: ${{ secrets.VERCEL_DEPLOY_HOOK_URL != '' }}
+        run: |
+          response=$(curl -sS -o /tmp/vercel-response.json -w "%{http_code}" \
+            -X POST \
+            -H "Content-Type: application/json" \
+            "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}")
+          echo "HTTP $response"
+          cat /tmp/vercel-response.json
+          if [ "$response" != "201" ] && [ "$response" != "200" ]; then
+            echo "::warning::Vercel deploy hook returned $response — check the hook URL and branch setting"
+            exit 0
+          fi
+          echo "Vercel production deploy triggered."

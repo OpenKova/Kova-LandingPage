@@ -10,16 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Vercel production deploy
-        if: ${{ secrets.VERCEL_DEPLOY_HOOK_URL != '' }}
+        env:
+          HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
+          if [ -z "$HOOK_URL" ]; then
+            echo "VERCEL_DEPLOY_HOOK_URL is not set in repo secrets; skipping."
+            echo "To enable auto-deploys, add the deploy hook URL to repo Settings > Secrets and variables > Actions."
+            exit 0
+          fi
           response=$(curl -sS -o /tmp/vercel-response.json -w "%{http_code}" \
             -X POST \
             -H "Content-Type: application/json" \
-            "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}")
+            "$HOOK_URL")
           echo "HTTP $response"
           cat /tmp/vercel-response.json
-          if [ "$response" != "201" ] && [ "$response" != "200" ]; then
-            echo "::warning::Vercel deploy hook returned $response — check the hook URL and branch setting"
+          if [ "$response" = "201" ] || [ "$response" = "200" ]; then
+            echo "Vercel production deploy triggered."
             exit 0
           fi
-          echo "Vercel production deploy triggered."
+          echo "::error::Vercel deploy hook returned $response"
+          exit 1

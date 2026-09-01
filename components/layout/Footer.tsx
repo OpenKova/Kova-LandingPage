@@ -87,7 +87,7 @@ export function Footer() {
           </div>
         </div>
         <div
-          className="mt-10 flex flex-wrap items-center gap-2 border-t pt-6"
+          className="mt-10 flex flex-wrap items-center gap-3 border-t pt-6"
           style={{ borderColor: "var(--oc-border-subtle)" }}
         >
           <span className="oc-eyebrow mr-2 text-[10px]">find kova</span>

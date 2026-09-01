@@ -1,30 +1,33 @@
 # Kova
 
-> A lightweight desktop utility for system monitoring, clipboard history, workspace profiles, and disk cleanup. Built with Tauri and Rust, runs from the tray on Windows and macOS.
+> The self-improving AI agent — your bots, your cloud, your rules.
 
-Kova is a fast, privacy-first desktop app that lives in your system tray. It combines system monitoring (CPU, memory, disk, network), clipboard history with search, workspace profiles for switching contexts, disk cleanup, and a quick launcher, all in one lightweight tool.
+Kova creates skills from experience, remembers who you are, runs scheduled
+routines, and drives a real terminal and browser. One agent core, every
+surface: CLI, desktop app, Telegram, Discord, Slack, WhatsApp, and more.
 
 ## Key Features
 
-- **System Monitor**: Real-time CPU, memory, disk, and network metrics from the tray
-- **Clipboard History**: Searchable clipboard with pinning and favorites
-- **Workspace Profiles**: Switch between project contexts instantly
-- **Disk Cleanup**: Find and remove junk files to free up space
-- **Quick Launcher**: Open apps, files, and URLs with a keyboard shortcut
-- **Tray-native**: Runs quietly in the system tray, no dock clutter
+- **Skills**: Learns your workflows — reusable procedures it improves over time
+- **Bots**: Spawn specialist bots with their own persona, memory, and model
+- **Routines**: Scheduled jobs that run even when your machine is off
+- **Terminal + Browser**: Drives a real terminal and browser
+- **Memory**: Remembers who you are across sessions
+- **Any model**: OpenRouter, Anthropic, OpenAI, Google, local + 20 more
 
 ## Pricing
 
-- Free tier with core features
-- Pro at $2.99/month for advanced features
+- Free forever, fully open source (MIT)
 
 ## Platforms
 
-- Windows 10/11
+- Windows
 - macOS
+- Linux
+- Messaging: Telegram, Discord, Slack, WhatsApp, Signal, and more
 
 ## Links
 
 - Website: https://appkova.com
-- Download: https://appkova.com#download
-- FAQ: https://appkova.com#faq
+- Download: https://github.com/OpenKova/kova/releases
+- GitHub: https://github.com/OpenKova/kova

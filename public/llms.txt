@@ -8,10 +8,10 @@ surface: CLI, desktop app, Telegram, Discord, Slack, WhatsApp, and 25+ more.
 
 ## Product
 
-- [Home](https://appkova.com): the landing page
-- [Messaging](https://appkova.com/messaging): all 29 supported chat channels
-- [Privacy](https://appkova.com/privacy): privacy policy
-- [Bot Terms](https://appkova.com/bot-terms): Discord bot terms and privacy
+- [Home](https://kova-agent.neuralstudio.in): the landing page
+- [Messaging](https://kova-agent.neuralstudio.in/messaging): all 29 supported chat channels
+- [Privacy](https://kova-agent.neuralstudio.in/privacy): privacy policy
+- [Bot Terms](https://kova-agent.neuralstudio.in/bot-terms): Discord bot terms and privacy
 - [Docs](https://kova-agent.neuralstudio.in/docs): full documentation
 - [GitHub](https://github.com/OpenKova/kova): source code and releases
 

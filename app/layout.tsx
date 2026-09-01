@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://appkova.com"),
+  metadataBase: new URL("https://kova-agent.neuralstudio.in"),
   title: `${SITE.name} | ${SITE.tagline}`,
   description: SITE.description,
   alternates: { canonical: "/" },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: SITE.description,
     type: "website",
     siteName: SITE.name,
-    url: "https://appkova.com",
+    url: "https://kova-agent.neuralstudio.in",
     images: [{ url: "/opengraph-image.jpg", width: 1200, height: 630, alt: SITE.name }],
   },
   twitter: {

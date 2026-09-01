@@ -16,7 +16,7 @@ const softwareSchema = {
   applicationCategory: "DeveloperApplication",
   operatingSystem: "Windows, macOS, Linux",
   offers: [{ "@type": "Offer", price: "0", priceCurrency: "USD", name: "Free" }],
-  url: "https://appkova.com",
+  url: "https://kova-agent.neuralstudio.in",
 };
 
 export default function Home() {

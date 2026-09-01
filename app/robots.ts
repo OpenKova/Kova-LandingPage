@@ -12,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://appkova.com/sitemap.xml",
+    sitemap: "https://kova-agent.neuralstudio.in/sitemap.xml",
   };
 }

@@ -51,12 +51,8 @@ export function Header() {
           href="https://github.com/OpenKova/kova"
           target="_blank"
           rel="noopener"
-          className="ml-2 inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[13px] font-medium"
-          style={{
-            fontFamily: "var(--oc-font-mono)",
-            borderColor: "var(--oc-border-subtle)",
-            color: "var(--oc-text-primary)",
-          }}
+          className="rounded-md px-3 py-1.5 text-[13px] font-medium transition-colors hover:bg-[var(--oc-surface-interactive)]"
+          style={{ color: "var(--oc-text-muted)", fontFamily: "var(--oc-font-body)" }}
         >
           GitHub
         </a>
@@ -64,12 +60,8 @@ export function Header() {
           href="https://kova-agent.neuralstudio.in/docs"
           target="_blank"
           rel="noopener"
-          className="ml-1 inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-[13px] font-medium"
-          style={{
-            fontFamily: "var(--oc-font-mono)",
-            borderColor: "var(--oc-border-subtle)",
-            color: "var(--oc-text-primary)",
-          }}
+          className="rounded-md px-3 py-1.5 text-[13px] font-medium transition-colors hover:bg-[var(--oc-surface-interactive)]"
+          style={{ color: "var(--oc-text-muted)", fontFamily: "var(--oc-font-body)" }}
         >
           Docs
         </a>

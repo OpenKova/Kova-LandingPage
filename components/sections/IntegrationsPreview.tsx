@@ -5,8 +5,8 @@ export function IntegrationsPreview() {
     <section id="integrations">
       <div className="mb-6 flex items-baseline justify-between">
         <h2 className="oc-eyebrow">Everywhere You Are</h2>
-        <a href="#features" className="text-xs font-medium" style={{ color: "var(--oc-text-muted)", fontFamily: "var(--oc-font-mono)" }}>
-          Your bots, your platforms →
+        <a href="/messaging" className="text-xs font-medium" style={{ color: "var(--oc-text-muted)", fontFamily: "var(--oc-font-mono)" }}>
+          messaging →
         </a>
       </div>
       <div className="overflow-hidden rounded-xl border" style={{ borderColor: "var(--oc-border-subtle)", background: "var(--oc-surface-card)" }}>

@@ -13,15 +13,16 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: "#101012",
+  colorScheme: "dark",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://appkova.com"),
-  title: `${SITE.name} — ${SITE.tagline} · Open source · Runs on your machine`,
+  title: `${SITE.name} | ${SITE.tagline}`,
   description: SITE.description,
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${SITE.name} — The workspace that really does things.`,
+    title: `${SITE.name} | ${SITE.tagline}`,
     description: SITE.description,
     type: "website",
     siteName: SITE.name,
@@ -50,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(() => { const k='oc-theme'; const s=localStorage.getItem(k); const t=s==='light'||s==='dark'?s:'dark'; document.documentElement.dataset.theme=t; document.documentElement.style.colorScheme=t; })();`,
+            __html: `(() => { const k='oc-theme'; const s=localStorage.getItem(k); document.documentElement.dataset.theme=(s==='light'||s==='dark')?s:'dark'; })();`,
           }}
         />
       </head>

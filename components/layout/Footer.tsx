@@ -3,7 +3,7 @@ import { FOOTER_COLUMNS, SITE } from "@/lib/constants";
 export function Footer() {
   return (
     <footer className="mt-12 border-t" style={{ borderColor: "var(--oc-border-subtle)", background: "var(--oc-bg-surface)" }}>
-      <div className="mx-auto flex max-w-[1060px] flex-col gap-8 px-6 py-10 md:flex-row md:justify-between md:px-7">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-6 py-10 md:flex-row md:justify-between md:px-7">
         <div>
           <div className="flex items-center gap-2">
             <img src="/kova-logo.png" alt="" className="h-5 w-auto object-contain" style={{ width: "auto", height: "20px" }} />

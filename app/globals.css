@@ -98,7 +98,7 @@ body {
 /* Rail — the signature OpenClaw layout */
 .rail {
   width: 100%;
-  max-width: 1060px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--oc-space-7);
   border-left: 1px solid var(--oc-border-subtle);

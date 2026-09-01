@@ -15,7 +15,6 @@ export function Hero() {
           style={{ width: "auto", height: "96px" }}
           priority
         />
-        <span className="hero-eyebrow">Open source · Bring your own keys</span>
         <h1 className="hero-title">
           The self-improving <em>AI agent.</em>
         </h1>

@@ -1,33 +1,49 @@
-# Kova
+﻿# Kova
 
 > The self-improving AI agent — your bots, your cloud, your rules.
 
 Kova creates skills from experience, remembers who you are, runs scheduled
 routines, and drives a real terminal and browser. One agent core, every
-surface: CLI, desktop app, Telegram, Discord, Slack, WhatsApp, and more.
+surface: CLI, desktop app, Telegram, Discord, Slack, WhatsApp, and 25+ more.
 
-## Key Features
+## Product
 
-- **Skills**: Learns your workflows — reusable procedures it improves over time
-- **Bots**: Spawn specialist bots with their own persona, memory, and model
-- **Routines**: Scheduled jobs that run even when your machine is off
-- **Terminal + Browser**: Drives a real terminal and browser
-- **Memory**: Remembers who you are across sessions
-- **Any model**: OpenRouter, Anthropic, OpenAI, Google, local + 20 more
+- [Home](https://appkova.com): the landing page
+- [Messaging](https://appkova.com/messaging): all 29 supported chat channels
+- [Privacy](https://appkova.com/privacy): privacy policy
+- [Bot Terms](https://appkova.com/bot-terms): Discord bot terms and privacy
+- [Docs](https://kova-agent.neuralstudio.in/docs): full documentation
+- [GitHub](https://github.com/OpenKova/kova): source code and releases
 
-## Pricing
+## What Kova is
 
-- Free forever, fully open source (MIT)
+Kova is a self-improving AI agent. One core agent runs across every surface
+you already use: a desktop app, a CLI, and the messaging apps you chat in
+every day. It writes code, runs shell commands, controls a browser, sends
+emails, schedules routines, and remembers who you are across sessions.
 
-## Platforms
+## Chat channels (29)
 
-- Windows
-- macOS
-- Linux
-- Messaging: Telegram, Discord, Slack, WhatsApp, Signal, and more
+Telegram, Discord, Slack, WhatsApp, Signal, iMessage, Matrix, Mattermost,
+Microsoft Teams, Google Chat, LINE, Feishu/Lark, WeChat/Weixin, ClickClack,
+Nextcloud Talk, Nostr, QQ Bot, Raft, Synology Chat, Tlon, Twitch, Voice Call,
+WebChat, Yuanbao, Zalo, Zalo ClawBot, Zalo Personal, IRC, SMS.
 
-## Links
+## Model providers
 
-- Website: https://appkova.com
-- Download: https://github.com/OpenKova/kova/releases
+Kova works with Claude, GPT, Gemini, DeepSeek, Grok, Nous, OpenRouter, and
+local models. Bring your own keys; nothing leaves your gateway unless you
+configure it to.
+
+## Install
+
+- macOS & Windows: one-liner `irm https://kova.neuralstudio.in/install.ps1 | iex` then `kova setup`
+- Desktop installers: https://github.com/OpenKova/kova/releases
+
+## Contact
+
+- Email: chiragborse877@gmail.com
+- Discord: https://discord.gg/eBHFpuYCMQ
+- X: https://x.com/getkova_ai
+- LinkedIn: https://www.linkedin.com/company/getkova-ai/
 - GitHub: https://github.com/OpenKova/kova

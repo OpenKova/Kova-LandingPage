@@ -79,6 +79,8 @@ export const FOOTER_COLUMNS = [
     title: "Learn",
     links: [
       { label: "Docs", href: "https://kova-agent.neuralstudio.in/docs" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Bot Terms", href: "/bot-terms" },
     ],
   },
   {

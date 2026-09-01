@@ -9,10 +9,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: "https://appkova.com/success",
+      url: "https://appkova.com/messaging",
       lastModified: new Date(),
-      changeFrequency: "never",
-      priority: 0,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
   ];
 }

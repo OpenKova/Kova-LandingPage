@@ -1,0 +1,378 @@
+@import "tailwindcss";
+
+/* === OpenClaw design tokens — ported verbatim, rebranded for Kova === */
+:root {
+  --oc-palette-ink-950: #101012;
+  --oc-palette-ink-900: #19191c;
+  --oc-palette-ink-850: #202024;
+  --oc-palette-ink-50: #ededed;
+  --oc-palette-ink-300: #bcbcc4;
+  --oc-palette-ink-500: #9a9aa2;
+  --oc-palette-paper-50: #fff;
+  --oc-palette-paper-100: #f6f5f3;
+  --oc-palette-paper-200: #eceae6;
+  --oc-palette-paper-950: #17171a;
+  --oc-palette-paper-700: #46464e;
+  --oc-palette-paper-600: #63636c;
+  --oc-palette-coral-dark-bright: #f5654a;
+  --oc-palette-coral-dark-mid: #e05540;
+  --oc-palette-coral-dark-deep: #b23a28;
+  --oc-palette-sea-dark-bright: #4fc8ae;
+  --oc-space-1: 0.25rem;
+  --oc-space-2: 0.5rem;
+  --oc-space-3: 0.75rem;
+  --oc-space-4: 1rem;
+  --oc-space-5: 1.5rem;
+  --oc-space-6: 2rem;
+  --oc-space-7: 3rem;
+  --oc-space-8: 4rem;
+  --oc-radius-sm: 0.25rem;
+  --oc-radius-md: 0.5rem;
+  --oc-radius-lg: 0.75rem;
+  --oc-font-display: "Switzer", "Inter", -apple-system, sans-serif;
+  --oc-font-body: "Switzer", "Inter", -apple-system, sans-serif;
+  --oc-font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --oc-font-serif: "Sentient", Georgia, serif;
+}
+
+:root,
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --oc-bg-page: #101012;
+  --oc-bg-surface: #19191c;
+  --oc-bg-elevated: #202024;
+  --oc-accent-primary: #f5654a;
+  --oc-accent-primary-hover: #e05540;
+  --oc-text-primary: #ededed;
+  --oc-text-secondary: #bcbcc4;
+  --oc-text-muted: #9a9aa2;
+  --oc-text-on-accent: #101012;
+  --oc-border-subtle: #9a9aa22e;
+  --oc-border-accent: #f5654a66;
+  --oc-surface-card: #19191cb8;
+  --oc-chart-line: #ededed17;
+  --oc-surface-interactive: #ededed14;
+  --oc-surface-interactive-hover: #ededed29;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --oc-bg-page: #f6f5f3;
+  --oc-bg-surface: #eceae6;
+  --oc-bg-elevated: #fff;
+  --oc-accent-primary: #d84a31;
+  --oc-text-primary: #17171a;
+  --oc-text-secondary: #46464e;
+  --oc-text-muted: #63636c;
+  --oc-text-on-accent: #fff;
+  --oc-border-subtle: #17171a14;
+  --oc-chart-line: #17171a1f;
+  --oc-surface-card: #fff;
+  --oc-surface-interactive: #17171a0d;
+}
+
+@theme inline {
+  --color-oc-bg: var(--oc-bg-page);
+  --color-oc-surface: var(--oc-bg-surface);
+  --color-oc-accent: var(--oc-accent-primary);
+  --color-oc-text: var(--oc-text-primary);
+  --color-oc-muted: var(--oc-text-muted);
+  --font-sans: var(--oc-font-body);
+  --font-mono: var(--oc-font-mono);
+  --font-serif: var(--oc-font-serif);
+  --font-display: var(--oc-font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--oc-bg-page);
+  color: var(--oc-text-primary);
+  font-family: var(--oc-font-body);
+}
+
+/* Rail — the signature OpenClaw layout */
+.rail {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 var(--oc-space-7);
+  border-left: 1px solid var(--oc-border-subtle);
+  border-right: 1px solid var(--oc-border-subtle);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+@media (max-width: 720px) {
+  .rail {
+    border-left: none;
+    border-right: none;
+    padding: 0 20px;
+  }
+}
+.rail > section {
+  padding: 64px 0;
+  border-top: 1px solid var(--oc-border-subtle);
+}
+.rail > section:first-child {
+  border-top: none;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--oc-chart-line) 1px, transparent 1.5px);
+  background-size: 26px 26px;
+  -webkit-mask-image: linear-gradient(#000, #0000 90%);
+  mask-image: linear-gradient(#000, #0000 90%);
+  pointer-events: none;
+}
+.hero-art {
+  display: flex;
+  justify-content: center;
+  height: min(30vh, 260px);
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(#0000 0%, #000 40% 68%, #0000 92%);
+  mask-image: linear-gradient(#0000 0%, #000 40% 68%, #0000 92%);
+}
+.hero-art pre {
+  font-family: var(--oc-font-mono);
+  font-size: 10px;
+  line-height: 1.3;
+  letter-spacing: 1px;
+  color: var(--oc-accent-primary);
+  opacity: 0.55;
+  margin: 0;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--oc-space-6) 68px;
+  margin-top: -90px;
+}
+.hero-eyebrow {
+  font-family: var(--oc-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--oc-accent-primary);
+}
+.hero-title {
+  font-family: var(--oc-font-display);
+  font-size: clamp(2.4rem, 5.6vw, 3.7rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--oc-text-primary);
+  margin: 20px auto 18px;
+}
+.hero-title em {
+  font-family: var(--oc-font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--oc-accent-primary);
+}
+.hero-desc {
+  color: var(--oc-text-muted);
+  max-width: 620px;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 0 auto;
+}
+.hero-ownership {
+  color: var(--oc-text-muted);
+  font-style: italic;
+  font-size: 0.94rem;
+  margin-top: 0.85rem;
+}
+.hero-actions {
+  display: flex;
+  gap: var(--oc-space-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 36px;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 1.5rem;
+  font-family: var(--oc-font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--oc-accent-primary);
+  background: var(--oc-accent-primary);
+  color: var(--oc-text-on-accent);
+  transition: background 0.15s, border-color 0.15s;
+}
+.hero-cta:hover {
+  background: color-mix(in srgb, var(--oc-accent-primary) 82%, #fff);
+}
+.hero-cta-ghost {
+  background: var(--oc-bg-page);
+  color: var(--oc-text-primary);
+  border: 1px solid var(--oc-border-subtle);
+}
+.hero-cta-ghost:hover {
+  background: var(--oc-bg-surface);
+}
+
+/* Section header - OpenClaw eyebrow style */
+.oc-eyebrow {
+  font-family: var(--oc-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--oc-accent-primary);
+}
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--oc-border-subtle);
+  border: 1px solid var(--oc-border-subtle);
+}
+@media (max-width: 720px) {
+  .section-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.feature-card {
+  background: var(--oc-surface-card);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+.feature-card:hover {
+  background: color-mix(in srgb, var(--oc-surface-card) 90%, var(--oc-text-primary) 6%);
+}
+.feature-card h3 {
+  font-family: var(--oc-font-display);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--oc-text-primary);
+}
+.feature-card p {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--oc-text-muted);
+}
+
+/* Quickstart tabs like OpenClaw */
+.qs-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+.qs-tab {
+  font-family: var(--oc-font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border: 1px solid var(--oc-border-subtle);
+  background: transparent;
+  color: var(--oc-text-muted);
+  cursor: pointer;
+}
+.qs-tab.active {
+  background: var(--oc-accent-primary);
+  color: var(--oc-text-on-accent);
+  border-color: var(--oc-accent-primary);
+}
+.qs-code {
+  background: var(--oc-bg-surface);
+  border: 1px solid var(--oc-border-subtle);
+  padding: 1.25rem;
+  font-family: var(--oc-font-mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  color: var(--oc-text-secondary);
+}
+.qs-code span.dim {
+  color: var(--oc-text-muted);
+}
+.qs-code span.accent {
+  color: var(--oc-accent-primary);
+}
+
+/* CTA grid - 4 cards dashed like OpenClaw */
+.cta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px dashed color-mix(in srgb, var(--oc-text-muted) 18%, transparent);
+  border-bottom: 1px dashed color-mix(in srgb, var(--oc-text-muted) 18%, transparent);
+}
+@media (max-width: 900px) {
+  .cta-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .cta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.cta-card {
+  border-left: 1px solid var(--oc-border-subtle);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 240px;
+}
+.cta-card:first-child {
+  border-left: none;
+}
+@media (max-width: 900px) {
+  .cta-card:nth-child(3) {
+    border-left: none;
+  }
+}
+@media (max-width: 520px) {
+  .cta-card {
+    border-left: none;
+    border-top: 1px solid var(--oc-border-subtle);
+  }
+  .cta-card:first-child {
+    border-top: none;
+  }
+}
+
+/* Grain */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: #f5654a47;
+}

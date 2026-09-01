@@ -21,9 +21,10 @@ export function Header() {
     <header
       className="sticky top-0 z-40 flex h-[52px] items-center justify-between px-6 md:px-7"
       style={{
-        background: scrolled ? "var(--oc-bg-page)" : "transparent",
+        background: scrolled ? "color-mix(in srgb, var(--oc-bg-page) 72%, transparent)" : "transparent",
         borderBottom: scrolled ? "1px solid var(--oc-border-subtle)" : "1px solid transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
+        backdropFilter: scrolled ? "blur(16px) saturate(140%)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(16px) saturate(140%)" : "none",
       }}
     >
       <Link href="/" className="flex items-center gap-2.5" aria-label="Kova home">

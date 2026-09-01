@@ -27,7 +27,7 @@ export function Header() {
       }}
     >
       <Link href="/" className="flex items-center gap-2.5" aria-label="Kova home">
-        <Image src={linesLogo} alt="" width={22} height={22} className="h-[22px] w-[22px]" priority />
+        <Image src={linesLogo} alt="" className="h-[22px] w-auto object-contain" style={{ width: "auto", height: "22px" }} priority />
         <span
           className="text-[15px] font-semibold tracking-tight"
           style={{ fontFamily: "var(--oc-font-display)", color: "var(--oc-text-primary)" }}

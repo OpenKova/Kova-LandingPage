@@ -85,9 +85,11 @@ html[data-theme="light"] {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
+  overflow-x: clip;
   background: var(--oc-bg-page);
   color: var(--oc-text-primary);
   font-family: var(--oc-font-body);

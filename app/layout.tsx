@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(() => { const k='oc-theme'; const s=localStorage.getItem(k); document.documentElement.dataset.theme=(s==='light'||s==='dark')?s:'dark'; })();`,
+            __html: `document.documentElement.dataset.theme='dark';`,
           }}
         />
       </head>

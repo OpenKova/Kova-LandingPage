@@ -39,36 +39,36 @@
 html[data-theme="dark"] {
   color-scheme: dark;
   --oc-bg-page: #000000;
-  --oc-bg-surface: #060607;
-  --oc-bg-elevated: #0d0d0f;
+  --oc-bg-surface: #000000;
+  --oc-bg-elevated: #000000;
   --oc-accent-primary: #f5654a;
   --oc-accent-primary-hover: #e05540;
   --oc-text-primary: #ededed;
   --oc-text-secondary: #bcbcc4;
   --oc-text-muted: #9a9aa2;
   --oc-text-on-accent: #101012;
-  --oc-border-subtle: #9a9aa22e;
+  --oc-border-subtle: #3a3a40;
   --oc-border-accent: #f5654a66;
-  --oc-surface-card: #0d0d0fb8;
+  --oc-surface-card: #060607;
   --oc-chart-line: #ededed17;
   --oc-surface-interactive: #ededed14;
   --oc-surface-interactive-hover: #ededed29;
 }
 
 html[data-theme="light"] {
-  color-scheme: light;
-  --oc-bg-page: #f6f5f3;
-  --oc-bg-surface: #eceae6;
-  --oc-bg-elevated: #fff;
-  --oc-accent-primary: #d84a31;
-  --oc-text-primary: #17171a;
-  --oc-text-secondary: #46464e;
-  --oc-text-muted: #63636c;
-  --oc-text-on-accent: #fff;
-  --oc-border-subtle: #17171a14;
-  --oc-chart-line: #17171a1f;
-  --oc-surface-card: #fff;
-  --oc-surface-interactive: #17171a0d;
+  color-scheme: dark;
+  --oc-bg-page: #000000;
+  --oc-bg-surface: #000000;
+  --oc-bg-elevated: #000000;
+  --oc-accent-primary: #f5654a;
+  --oc-text-primary: #ededed;
+  --oc-text-secondary: #bcbcc4;
+  --oc-text-muted: #9a9aa2;
+  --oc-text-on-accent: #101012;
+  --oc-border-subtle: #3a3a40;
+  --oc-chart-line: #ededed17;
+  --oc-surface-card: #060607;
+  --oc-surface-interactive: #ededed14;
 }
 
 @theme inline {

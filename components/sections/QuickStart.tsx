@@ -2,34 +2,22 @@
 
 import { useState } from "react";
 
-type Tab = "apps" | "one-liner" | "npm" | "hackable";
+type Tab = "apps" | "one-liner";
 
 const CODE: Record<Tab, string> = {
-  apps: `# Desktop apps — gateway, tray, setup, all included
+  apps: `# Desktop apps — CLI, TUI, desktop app
 # Download from GitHub releases, double-click, done.
 open https://github.com/OpenKova/kova/releases`,
   "one-liner": `# One-liner (macOS & Windows via PowerShell)
-curl -fsSL https://appkova.com/install.sh | bash
+irm https://kova.neuralstudio.in/install.ps1 | iex
 
 # then
-kova onboard`,
-  npm: `# Via npm / pnpm
-npm i -g kova
-# or
-pnpm add -g kova
-
-kova onboard`,
-  hackable: `# Hackable — clone and run from source
-git clone https://github.com/OpenKova/kova.git
-cd kova && pnpm install
-pnpm kova onboard`,
+kova setup`,
 };
 
 const TABS: { id: Tab; label: string }[] = [
   { id: "apps", label: "Apps" },
   { id: "one-liner", label: "One-liner" },
-  { id: "npm", label: "npm" },
-  { id: "hackable", label: "Hackable" },
 ];
 
 export function QuickStart() {
@@ -47,7 +35,7 @@ export function QuickStart() {
       <div className="mb-6 flex items-baseline justify-between">
         <h2 className="oc-eyebrow">Quick Start</h2>
         <span className="hidden text-xs md:inline" style={{ color: "var(--oc-text-muted)", fontFamily: "var(--oc-font-mono)" }}>
-          Windows 10+ · macOS 13+ · Tauri + Rust
+          Windows · macOS · Linux
         </span>
       </div>
 
@@ -78,9 +66,9 @@ export function QuickStart() {
 
       <div className="mt-6 grid gap-3 md:grid-cols-3">
         {[
-          { title: "macOS Stable", desc: "macOS 13+ · Universal", cta: "Download .dmg" },
-          { title: "Windows Stable", desc: "Windows 10 20H2+ · Tray native", cta: "Download .exe" },
-          { title: "Works everywhere", desc: "No cloud. All data stays on device.", cta: "Why local →" },
+          { title: "Any model", desc: "OpenRouter, Anthropic, OpenAI, Google, local + 20 more", cta: "Bring your keys →" },
+          { title: "Every surface", desc: "CLI, desktop app, TUI, and your messaging apps", cta: "One agent core →" },
+          { title: "Autonomous", desc: "Routines, bots and subagents that work while you're away", cta: "Works while off →" },
         ].map((c) => (
           <div
             key={c.title}

@@ -8,9 +8,9 @@ const CODE: Record<Tab, string> = {
   apps: `# Desktop apps — CLI, TUI, desktop app
 # Grab the installer from the site button above,
 # or download the latest release directly:
-open https://github.com/OpenKova/kova/releases`,
+open https://github.com/chiragborse1/kova-test/releases`,
   "one-liner": `# One-liner (macOS & Windows via PowerShell)
-irm https://kova.neuralstudio.in/install.ps1 | iex
+irm https://raw.githubusercontent.com/chiragborse1/kova-test/main/scripts/install.ps1 | iex
 
 # then
 kova setup`,

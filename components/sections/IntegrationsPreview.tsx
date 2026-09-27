@@ -321,7 +321,7 @@ const models: Integration[] = [
   {
     name: "Nous",
     kind: "Model",
-    desc: "Hermes, from the Kova builders.",
+    desc: "Kova, from the Neural Studios builders.",
     color: "#F5654A",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
